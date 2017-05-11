@@ -1,0 +1,174 @@
+
+.al-nav-wrap{
+    width: 100%;
+    background: #000000;
+    .al-nav-area{
+        margin: 0 auto;
+        width: @al-content-width;
+        min-height: 26px;
+        .al-nav-info{
+            position: absolute;
+            width: inherit;
+            .navbar{
+                margin: 0 auto;
+                width: inherit;
+                height: 26px !important;
+                min-height: 26px !important;
+                background: #000000;
+                border: 0;
+                ul{
+                    li{
+                        border-right: 1px dashed #CCCCCC;
+                        a{
+                            padding: 3px 10px;
+                            font-size: 11px;
+                            color: #CCCCCC;
+                            &:hover{
+                                color: #FFFFFF;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+.al-logo-wrap{
+    margin-top: 20px;
+    width: 100%;
+    .al-logo-area{
+        margin: 0 auto;
+        width: @al-content-width;
+        .al-logo-info{
+            padding: 20px 0;
+            text-align: center;
+        }
+    }
+}
+
+.al-menu-wrap{
+    width: 100%;
+    .al-menu-area{
+        margin: 0 auto;
+        width: @al-content-width;
+        border-bottom: 1px dashed #000000;
+        .al-menu-info{
+            .navbar{
+                background: #FFFFFF;
+                border: none;
+                ul{
+					&.menu-ul-list{
+						width: 100%;
+					}
+                    li{
+                        a{
+                            padding: 10px 25px;
+                            font-size: 11px;
+                            color: #000000;
+                            &:hover{
+                                color: #2F2C2C;
+                            }
+                        }
+                        &.search{
+							float: right;
+                            input{
+                                padding: 5px;
+                                border: none;
+                                .box-shadow(none);
+                                border-bottom: 1px solid #000000;
+                                color: rgba(0,0,0,0.5);
+                                font-style: italic;
+                                &.form-control{
+                                    .border-radius(0);
+                                }
+                            }
+                            button{
+                                background: transparent;
+                                border: none;
+                                top: 5px;
+                                right: 0;
+                                position: absolute;
+                            }
+                        }
+                        > ul{
+                            background: #000000;
+                            li{
+                                a{
+                                    color: #FFFFFF;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.shop-car{
+    position: relative;
+    &.dropdown{
+        a{
+            background: #000000 !important;
+        }
+    }
+    a{
+        font-size: 14px;
+    }
+    .shop-car-list{
+        position: absolute;
+        top: 28px;
+        z-index: 100;
+        width: 300px;
+        margin-left: -90px;
+        background-color: #ffffff;
+        border-left: 1px solid #000000;
+        border-right: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+        padding: 10px;
+    }
+}
+.allure-dropdown{
+	 &.dropdown{
+        > a{
+            background: #000000 !important;
+        }
+    }
+	.dropdown-menu{
+		background-color: #ffffff;
+        border-left: 1px solid #000000;
+        border-right: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+        li{
+            border-right: 0 !important;
+            > a{
+                color: #000000 !important;
+            }
+        }
+	}
+}
+.language{
+		> a{
+			background: #000000 !important;
+		}
+	ul{
+		position: absolute;
+		top: 28px;
+		z-index: 100;
+		width: 100px;
+		margin-left: -90px;
+		background-color: #ffffff;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+		padding: 10px;
+		li{
+			border-right: 0 !important;
+			> a{
+				color: #000000 !important;
+			}
+		}
+	}
+}

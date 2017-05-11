@@ -1,0 +1,10 @@
+{
+    "name": "bxslider-4",
+    "version": "0.1.0",
+    "main": [
+        "jquery.bxslider.js",
+        "jquery.bxslider.css"
+    ],
+    "dependencies":{
+    }
+}

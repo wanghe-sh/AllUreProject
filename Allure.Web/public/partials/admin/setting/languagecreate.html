@@ -1,0 +1,55 @@
+﻿<div class="row" >
+    <div class="col-xs-12">
+        <div class="page-content-header col-xs-12">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2 main">
+            <allure-alerts ng-model="alerts"></allure-alerts>
+            <form method="post" class="form-horizontal bootstrap-validator-form" name="form" ng-submit="submit()" novalidate>
+                <fieldset>
+                    
+                    <div class="form-group" ng-show="!isCreate">
+                        <label class="col-xs-2 control-label">语言代码<em>*</em></label>
+                        <div class="col-xs-6">
+                            <input class="form-control" type="text" name="code" ng-model="language.code" required readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="!isCreate">
+                        <label class="col-xs-2 control-label">名字<em>*</em></label>
+                        <div class="col-xs-6">
+                            <input class="form-control" type="text" name="description" ng-model="language.description" required readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="isCreate">
+                        <label class="col-xs-2 control-label input-sm">语言<em>*</em></label>
+                        <div class="col-xs-6">
+                            <select class="form-control input-sm" ng-options="lang as lang.description for lang in languagepotential" ng-change="languagechange()" ng-model="selectedItem">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">是否默认</label>
+                        <div class="col-xs-6">
+                            <input type="checkbox" name="isDefault" ng-model="language.isDefault" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">是否启用</label>
+                        <div class="col-xs-6">
+                            <input  type="checkbox" name="enabled" ng-model="language.enabled" />
+                        </div>
+                    </div>
+                    
+                    
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-xs-9 col-xs-offset-3">
+                        <input id="submitbtn" type="submit" class="btn btn-primary" value="保存" submitbtn />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

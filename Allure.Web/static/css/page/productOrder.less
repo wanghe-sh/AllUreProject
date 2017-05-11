@@ -1,0 +1,75 @@
+@import "common.less";
+
+input.size-2{
+    width: 200px !important;
+}
+input.size-5{
+    width: 400px !important;
+}
+.al-product-order-wrap{
+    width: 100%;
+    .al-product-order-area{
+        margin: 0 auto;
+        width: @al-content-width;
+        .al-product-order-info{
+            padding-bottom: 25px;
+            h3{
+                border: none;
+                border-bottom: 2px solid #1b809e;
+                padding: 20px 0 20px 0;
+            }
+            .product-order-form{
+                .product-order{
+                    padding-right: 20px;
+                }
+                h4.title{
+                    border-bottom: 1px solid #DDDDDD;
+                    padding: 20px 0 20px 0;
+					position:relative;
+					span.arrow{
+						position: absolute;
+						top: 27px;
+						right: 10px;
+						cursor: pointer;
+					}
+                }
+                div.line{
+                    padding-bottom: 8px;
+                }
+                .order-account{
+                    text-align: right;
+                    font-size: 15px;
+                    span{
+                        &:last-child{
+                            font-weight:bold;
+                        }
+                    }
+                }
+                .order-submit{
+                    text-align: right;
+                    margin-top: 20px;
+                    padding-top: 20px;
+                    border-top: 1px dashed #BBBBBB;
+                    button{
+                        padding-left: 25px;
+                        padding-right: 25px;
+                        .border-radius(0);
+                    }
+                }
+                .pay-info{
+                    span.pay-received{
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+.hint-error{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 450px;
+	padding: 5px;
+	color: red;
+	background: #FFE5E5;
+}

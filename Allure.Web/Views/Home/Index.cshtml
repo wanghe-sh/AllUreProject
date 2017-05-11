@@ -1,0 +1,343 @@
+﻿@model Allure.Web.Models.MainViewModel<Allure.Web.Models.ProductOutput[]>
+@{
+    Layout = "~/Views/Shared/_Layout_New.cshtml";
+    var products = Model.BodyModel;
+    var recommendL = products.Where(p => p.RecommendedL).ToArray();
+    var recommendS = products.Where(p => p.RecommendedS).ToArray();
+    var videos = products.Where(p => !string.IsNullOrWhiteSpace(p.VideoUrl)).ToArray();
+}
+@*<link type="text/css" rel="stylesheet" href="/static/css/page/index.css">*@
+<div class="al-line-between"></div>
+
+
+<!--BANNER BEGIN-->
+<div class="slick banner">
+    @for (int i = 0; i < recommendL.Length && i < 5; i++)
+    {
+
+        <div class="item @(i == 0 ? "active" : string.Empty)">
+            <a href="/product/@recommendL[i].Id">
+                <img src="@(recommendL[i].Images.FirstOrDefault(m => m.Height >= 400 && m.Width >= 940) == null ? "" : recommendL[i].Images.FirstOrDefault(m => m.Height >= 400 && m.Width >= 940).Url)">
+            </a>
+            <div class="carousel-caption">
+                <h3>@recommendL[i].Name</h3>
+            </div>
+        </div>
+
+    }
+</div>
+<!--BANNER END-->
+
+<div class="al-display-wrap">
+    <div class="al-display-area">
+        <div class="al-display-info">
+            <!-- one row start-->
+            <div class="box-list two">
+                @*<div class="box-list-title">
+                        <h4>FURNITURE DISPLAY BIG PICUTRE</h4>
+                    </div>*@
+                <!-- ELECTRIC APPLIANCE slide start-->
+                <div class="list">
+                    @for (int i = 0; i < videos.Length && i < 3; i++)
+                    {
+                        <div class="box">
+                            <div class="al-video-info">
+                                <video width="300" height="200" style="background: #000000" src="@videos[i].VideoUrl" type="video/mp4" controls="controls"></video>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- one row end-->
+        </div>
+    </div>
+</div>
+
+<!--MAIN BEGIN-->
+<div class="design">
+    <ul class="clearfix">
+        @if (recommendS.Length >=0 )
+        {
+            <li class="design-item design-item-1">
+                <a href="/product/@recommendS[0].Id">
+                    <div class="design-item-img">
+                        <img class="vertical-center" src="@(recommendS[0].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940) == null ? "" : recommendS[0].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940).Url)" />
+                        <i></i>
+                    </div>
+                    <div class="design-item-con">
+                        <h4>
+                            DESIGN BY<br />
+                            allure<br />
+                            MODERN 2017
+                        </h4>
+                        <span class="more">view project</span>
+                    </div>
+                </a>
+            </li>
+        }
+        @if (recommendS.Length >= 1)
+        {
+            <li class="design-item design-item-2">
+                <a href="/product/@recommendS[1].Id">
+                    <img class="vertical-center" src="@(recommendS[1].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940) == null ? "" : recommendS[1].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940).Url)" />
+                    <i></i>
+                </a>
+            </li>
+        }
+        @if (recommendS.Length >= 2)
+        {
+            <li class="design-item design-item-3">
+                <a href="/product/@recommendS[2].Id">
+                    <div class="design-item-img">
+                        <img class="vertical-center" src="@(recommendS[2].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940) == null ? "" : recommendS[2].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940).Url)" />
+                        <i></i>
+                    </div>
+                    <div class="design-item-con">
+                        <h4>
+                            DESIGN BY<br />
+                            allure<br />
+                            MODERN 2017
+                        </h4>
+                        <span class="more">view project</span>
+                    </div>
+                </a>
+            </li>
+        }
+        @if (recommendS.Length >= 3)
+        {
+            <li class="design-item design-item-4">
+                <a href="/product/@recommendS[3].Id">
+                    <div class="design-item-img">
+                        <img class="vertical-center" src="@(recommendS[3].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940) == null ? "" : recommendS[3].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940).Url)" />
+                        <i></i>
+                    </div>
+                    <div class="design-item-con">
+                        <h4>
+                            DESIGN BY<br />
+                            allure<br />
+                            MODERN 2017
+                        </h4>
+                        <span class="more">view project</span>
+                    </div>
+                </a>
+            </li>
+        }
+        @if (recommendS.Length >=4)
+        {
+            <li class="design-item design-item-5">
+                <a href="/product/@recommendS[4].Id">
+                    <img class="vertical-center" src="@(recommendS[4].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940) == null ? "" : recommendS[4].Images.FirstOrDefault(m => m.Height < 400 || m.Width < 940).Url)" />
+                    <i></i>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="staff">
+    <ul class="staff-list">
+        <li>
+            <div class="staff-item">
+                <div class="staff-img">
+                    <img class="vertical-center" src="~/public/NewHtml/images/staff_img01.jpg" />
+                    <i></i>
+                </div>
+                <h3 class="staff-name">philippe starck</h3>
+                <p class="staff-career">designer</p>
+                <div class="staff-others">
+                    <a class="staff-link">cv</a>
+                    <div class="staff-shares">
+                        <a class="staff-shares-1" href="#"></a>
+                        <a class="staff-shares-2" href="#"></a>
+                        <a class="staff-shares-3" href="#"></a>
+                        <a class="staff-shares-4" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="staff-item">
+                <div class="staff-img">
+                    <img class="vertical-center" src="~/public/NewHtml/images/staff_img02.jpg" />
+                    <i></i>
+                </div>
+                <h3 class="staff-name">mario bellini</h3>
+                <p class="staff-career">designer</p>
+                <div class="staff-others">
+                    <a class="staff-link">cv</a>
+                    <div class="staff-shares">
+                        <a class="staff-shares-1" href="#"></a>
+                        <a class="staff-shares-2" href="#"></a>
+                        <a class="staff-shares-3" href="#"></a>
+                        <a class="staff-shares-4" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="staff-item">
+                <div class="staff-img">
+                    <img class="vertical-center" src="~/public/NewHtml/images/staff_img03.jpg" />
+                    <i></i>
+                </div>
+                <h3 class="staff-name">patricia urquiola</h3>
+                <p class="staff-career">designer</p>
+                <div class="staff-others">
+                    <a class="staff-link">cv</a>
+                    <div class="staff-shares">
+                        <a class="staff-shares-1" href="#"></a>
+                        <a class="staff-shares-2" href="#"></a>
+                        <a class="staff-shares-3" href="#"></a>
+                        <a class="staff-shares-4" href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="staff-view">
+        <h3 class="head-line">STAFF.</h3>
+        <p>Sit amet laoreet sapien dictum. Sed eget eros augue. Pellentesque tempor mi sit amet nisi tincidunt tincidunt. Fusce malesuada lectus sed mauris pharetra faucibus.</p>
+        <br />
+        <p>Aenean diam tortor, hendrerit ac pulvinar vel, condimentum ac velit. Phasellus eu odio elit. Aenean volutpat mi quam, ut ornare augue tempus ut.</p>
+        <br />
+        <p>Morbi sagittis diam mauris, in adipiscing nulla convallis ut.</p>
+    </div>
+</div>
+<!--MAIN END-->
+
+
+
+
+
+
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "slick",
+                            "location": "js/HtmlNew",
+                            "main": "slick.min"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "searchProduct",
+                            "location": "js/app/searchProduct",
+                            "main": "main"
+                        },
+                         {
+                             "name": "subscribedMail",
+                             "location": "js/app/subscribedMail",
+                             "main": "main"
+                         },
+                        {
+                            "name": "alHome",
+                            "location": "js/app/index",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "alHome", "slick"], function (jQuery, alHome, slick) {
+                            jQuery(document.body).ready(
+                                function () {
+                                    new alHome();
+                                    jQuery('.banner').slick({
+                                        autoplay: false,
+                                        autoplaySpeed: 2000,
+                                        dots: true,
+                                        infinite: true,
+                                        speed: 500,
+                                        fade: true,
+                                    });
+                                }
+                                    );
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

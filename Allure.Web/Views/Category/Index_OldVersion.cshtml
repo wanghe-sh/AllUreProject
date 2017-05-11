@@ -1,0 +1,197 @@
+﻿@model Allure.Web.Models.MainViewModel<Allure.Web.Models.CategoryIndex>
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/productList.css">
+
+<!-- product list start-->
+	<div class="al-leisure-wrap">
+		<div class="al-leisure-area">
+			<div class="al-leisure-info">
+				
+				<div class="list-right">
+					<div class="box">
+						<div class="big-pic"  style="text-align: center">
+							<img src="@(Model.BodyModel.Current.ImageUrl)" style="width:100%; height:100%" />
+							<div class="text"><span>@(Model.BodyModel.Current.Localized.Name)</span></div>
+						</div>
+                        <div class="intro">
+                            @(Model.BodyModel.Current.Localized.Description)
+                        </div>				
+					</div>
+
+					<div class="box list" ng-cloak ng-controller="ListController" category-url="/category/products/@(Model.BodyModel.Current.Id)">
+						<div class="paging">
+                            @*<pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()" direction-links="false"></pagination>*@
+                        </div>
+                        <div class="box price">
+						    <ul class="clearfix">
+                                <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(0)" checked/></span>
+								    <span>All</span>
+							    </li>
+							    <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(0,99)"/></span>
+								    <span>¥0-100</span>
+							    </li>
+							    <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(100,199)"/></span>
+								    <span>¥100-199</span>
+							    </li>
+							    <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(200, 499)"/></span>
+								    <span>¥200-499</span>
+							    </li>
+							    <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(500, 699)"/></span>
+								    <span>¥500-699</span>
+							    </li>
+							    <li>
+								    <span><input type="radio" name="selectPrice" ng-click="compare(700, 999)"/></span>
+								    <span>¥700-999</span>
+							    </li>
+                                <li>
+                                    @*<span><input type="radio" ng-click="searchInList('aa')" /></span>*@
+                                    <span><input type="text" ng-model="searchInListKey"></span>
+                                </li>
+						    </ul>
+					    </div>
+                        <div class="display-products">
+                            <ul>
+                                <li ng-repeat="item in filterDetail = (details |  filter : priceSection)">
+                                <a href="/product/{{ item.Id }}" target="_blank">
+                                    <div class="img"><img src="{{ item.Images[0].ThumbnailUrl }}"/></div>
+                                    <div class="text">
+                                        <div class="name">{{ item.Name }}</div>
+                                        <div class="price">{{'Price' | translate}}: ¥{{ item.Price }}</div>
+                                    </div>
+                                    </a>
+                                </li>
+                                <li ng-show="filterDetail.length === 0" style="width:100%">
+                                    <div class="alert alert-info" role="alert">
+                                        {{'productisempty' | translate}}
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- product list end-->
+<script type="text/javascript">
+
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-route",
+                            "location": "js/lib/angularjs-route",
+                            "main": "angularjs-route"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "searchProduct",
+                            "location": "js/app/searchProduct",
+                            "main": "main"
+                        },
+                        {
+                            "name": "productList",
+                            "location": "js/app/productList",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-route": {
+                            deps: ["angular"]
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "productList"], function (jQuery, ProductList) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new ProductList({
+                                        
+                                    });
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

@@ -1,0 +1,217 @@
+<style type="text/css">
+
+#order-detail-page .sub-title{
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
+}
+#order-detail-page .sub-title .glyphicon{
+    margin-top:7px
+}
+#order-detail-page .sub-title.form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
+#order-detail-page .adjust-form-group{
+    padding-left:15px;padding-right:15px;
+}
+#order-detail-page .adjust-form-group input[type=checkbox]{
+    margin-left: 6px;
+}
+/*#order-detail-page .text-center button:last-child{
+    margin-left: 50px;*/
+}
+</style>
+
+<div class="row" id="order-detail-page">
+    <div class="col-lg-12">
+      <div class="page-content-header col-lg-12">
+          <h4>{{title}}</h4>
+      </div>
+      <div class="col-md-10 main">
+          <!--<alert type="{{alerts.type}}" close="closeAlert($index)" ng-show="alerts.length > 0"><ul ng-repeat="alert in alerts"><li>{{alert.msg}}</li></ul>
+          </alert>-->
+          <allure-alerts ng-model="alerts"></allure-alerts>
+        <form method="post" class="form-horizontal bootstrap-validator-form" name="form" ng-submit="submit()" novalidate>
+          <fieldset>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">订单号</label>
+                <div class="col-sm-4">
+                    <input class="form-control" ng-model="UpdateOrder.orderNO" type="text" disabled/>
+                </div>
+                <label class="col-sm-2 control-label">订单状态</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="status" ng-model="UpdateOrder.status" ng-options="obj.value as obj.text for obj in ORDERSTATUS" required ng-disabled="UpdateOrder.statuscurrent == 'Canceled' || UpdateOrder.statuscurrent == 'Returned'">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group sub-title">
+                <label class="col-sm-2 control-label">是否看货</label>
+                <div class="col-sm-4">
+                    <label class="radio-inline"><input type="radio" name="order.look_goods" ng-value="true" ng-model="UpdateOrder.willCheck"  ng-init="UpdateOrder.willCheck"/>是</label>
+                    <label class="radio-inline"><input type="radio" name="order.look_goods" ng-value="false" ng-model="UpdateOrder.willCheck" ng-init="UpdateOrder.willCheck"/>否</label>
+                </div>
+                <span class="pull-right glyphicon  glyphicon-chevron-down" ng-click="isCollapsed1 = !isCollapsed1" ng-show="isCollapsed1"></span>
+                <span class="pull-right glyphicon  glyphicon-chevron-up" ng-click="isCollapsed1 = !isCollapsed1" ng-show="!isCollapsed1"></span>
+            </div>
+            <div collapse="isCollapsed1">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">看货地点</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.checkAddress"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">看货时间</label>
+                    <div class="col-sm-4">
+                        <alluredatepicker ng-model="UpdateOrder.checkTime"></alluredatepicker>
+                    </div>
+                    <label class="col-sm-2 control-label">联系电话</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.checkContact" />
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">联系人</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.checkContacter" />
+                    </div>
+                   
+                </div>-->
+            </div>
+            <div class="sub-title">
+                <label class="control-label">物流信息</label>
+                <span class="pull-right glyphicon  glyphicon-chevron-down" ng-click="isCollapsed2 = !isCollapsed2" ng-show="isCollapsed2"></span>
+                <span class="pull-right glyphicon  glyphicon-chevron-up" ng-click="isCollapsed2 = !isCollapsed2" ng-show="!isCollapsed2"></span>
+            </div>
+            <div collapse="isCollapsed2">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">收货人</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.receiverName" disabled/>
+                    </div>
+                    <label class="col-sm-2 control-label">联系方式</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.receiverContact" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">送货地址</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" ng-model="UpdateOrder.receiverAddress" type="text" disabled/>
+                    </div>
+                    <label class="col-sm-2 control-label">邮编</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" ng-model="UpdateOrder.receiverPostCode" type="text" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">物流公司</label>
+                    <div class="col-sm-4">
+                        <!--<input class="form-control" type="text" ng-model="UpdateOrder.logisticName" ng-init="UpdateOrder.logisticName"/>-->
+                        <select class="form-control" name="status" ng-model="UpdateOrder.logisticId" ng-init="UpdateOrder.logisticId" ng-options="obj.id as obj.name for obj in logistics" required>
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2 control-label">物流单号</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="UpdateOrder.logisticOrderNumber" ng-init="UpdateOrder.logisticOrderNumber"/>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-title">
+                <label class="control-label">订单明细</label>
+                <span class="pull-right glyphicon  glyphicon-chevron-down" ng-click="isCollapsed3 = !isCollapsed3" ng-show="isCollapsed3"></span>
+                <span class="pull-right glyphicon  glyphicon-chevron-up" ng-click="isCollapsed3 = !isCollapsed3" ng-show="!isCollapsed3"></span>
+            </div>
+            <div collapse="isCollapsed3">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-sm-0">#</th>
+                        <th class="col-sm-1">货号</th>
+                        <th class="col-sm-1">品名</th>
+                        <th class="col-sm-2">品牌</th>
+                        <th class="col-sm-1">单价</th>
+                        <th class="col-sm-0" style="display: none;">折扣金额</th>
+                        <th class="col-sm-2">订购数量</th>
+                        <th class="col-sm-2">合计金额</th>
+                        <th class="col-sm-2">交货时间</th>
+                        <th class="col-sm-2">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="detail in UpdateOrder.details">
+                        <td>#</td>
+                        <td ng-if="!detail.isNew">
+                            {{detail.product.number}}
+                        </td>
+                        <td ng-if="detail.isNew">
+                            <input type="text" class="form-control input-sm" ng-enter="queryNumber()" ng-model="detail.product.number"/>
+                        </td>
+
+                        <td>{{detail.product.name}}</td>
+                        <td>{{detail.product.brandName}}</td>
+                        <td>{{detail.product.price | number:2}}</td>
+                        <td style="display: none;"><input class="form-control" type="text" ng-model="detail.discount" ng-init="detail.discount" style="width: 80px" ng-change="discountUpdate(this)"/></td>
+                        <td><input class="form-control" type="text" ng-model="detail.count" ng-init="detail.count" style="width: 80px" ng-change="discountUpdate(this)"/></td>
+                        <td>{{amount(detail.count, detail.product.price, detail.discount)| number:2}}</td>
+                        <td>
+                            <alluredatepicker ng-model="detail.deliveryTime" datepicker-width="120"></alluredatepicker>
+
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" ng-click="removeItem($index)">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input  type="button" value="添加记录" ng-click="addNewItem()" ng-disabled="UpdateOrder.statuscurrent == 'Canceled' || UpdateOrder.statuscurrent == 'Returned' || UpdateOrder.statuscurrent == '已发货'" />
+            </div>
+            <div class="form-group adjust-form-group">
+                <span><label class="control-label">总计金额</label></span>
+                <span class="pull-right text-right"><label class="control-label"> ¥{{totalAmountMoney()| number:2}} </label> </span>
+            </div>
+              <div class="form-group adjust-form-group">
+                  <span><label class="control-label">订单折扣</span>
+                  <span class="pull-right text-right">
+                      <input class="form-control" type="text" ng-model="UpdateOrder.discount"  style="width:80px" ng-change="totaldiscountUpdate(this)" />
+                  <!--<label class="control-label"> ¥{{totalDiscount()| number:2}} </label>-->
+                  </span>
+              </div>
+              
+            <div class="form-group adjust-form-group" style="background-color:#9fc5e8">
+                <span><label class="control-label">应付货款</label></span>
+                <span class="pull-right text-right"><label class="control-label"> ¥{{totalPay() | number:2}} </label></span>
+            </div>
+            <div class="sub-title">
+                <label class="control-label">支付信息</label>
+            </div>
+            <div class="form-group adjust-form-group">
+                <span class="pull-left"><label class="control-label">应付定金</label></span>
+                <span class="col-sm-2 text-right"><input class="form-control" type="text" ng-model="UpdateOrder.deposit" ng-init="UpdateOrder.deposit" style="width:80px" ng-change="remainingPay()"/></span>
+                <span class="col-sm-2"><label>收讫<input type="checkbox" ng-model="UpdateOrder.depositReceipt"/></label></span>
+                <span class="col-sm-2 "><label class="control-label">付款期限 至</label></span>
+                <span class="col-sm-2 "> <alluredatepicker ng-model="UpdateOrder.depositDeadline" datepicker-width="160"></alluredatepicker></span>
+            </div>
+            <div class="form-group adjust-form-group">
+                <span class="pull-left"><label class="control-label">待收余额</label></span>
+                <span class="col-sm-2 text-right">
+                    <label class="control-label"> ¥{{UpdateOrder.remaining| number:2}} </label>
+                <!--<input class="form-control" type="text" ng-model="UpdateOrder.remaining"  format="number" ng-init="UpdateOrder.remaining" disabled style="width:80px" />-->
+                </span>
+                <span class="col-sm-2"><label>收讫<input type="checkbox"  ng-model="UpdateOrder.remainingReceipt"/></label></span>
+                <span class="col-sm-2 "><label class="control-label">付款期限 至</label></span>
+                <span class="col-sm-2 "> <alluredatepicker ng-model="UpdateOrder.remainingDeadline" datepicker-width="160"></alluredatepicker></span>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn btn-primary" ng-click="orderUpdate()" ng-show="UpdateOrder.statuscurrent != 'Canceled' && UpdateOrder.statuscurrent != 'Returned'" submitbtn>更新订单</button>
+                  <!--<button type="submit" class="btn btn-primary" order-id="UpdateOrder.id" order-delete>删除订单</button>-->
+                </div>
+              </div>
+        </form>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,310 @@
+﻿@model Allure.Web.Models.MainViewModel<Allure.Web.Models.CategoryIndex>
+@{ 
+    Layout = "~/Views/Shared/_Layout_New.cshtml";
+}
+@*<link type="text/css" rel="stylesheet" href="/static/css/page/productList.css">*@
+
+
+<!--BANNER BEGIN-->
+<div class="sub-banner">
+    <img src="~/public/NewHtml/images/pro_banner.jpg" />
+    <div class="sub-content">
+        <h1 class="overf">PRODUCT  classification</h1>
+        <p class="des">Shop through our latest selectio of Armchair and Sofa Allure design.</p>
+        <div class="bread-rumb">
+            <a class="home" href="#">Home</a><em></em>
+            <a href="#">Products</a><em></em>
+            <span>Allure</span>
+        </div>
+    </div>
+</div>
+<!--BANNER END-->
+
+<!-- product list start-->
+<!--MAIN BEGIN-->
+<div class="grayBg">
+    <div class="products clearfix" ng-cloak ng-controller="ListController" category-url="/category/products/@(Model.BodyModel.Current.Id)">
+        <div class="products-right">
+            <h2 class="single-title">SEARCH&nbsp;&nbsp;查找</h2>
+            <div class="pro-search">
+                <div class="pro-search-head">
+                    <input class="iptxt" type="text" ng-model="searchInListKey" />
+                    @*<input class="ipbtn" type="button" id="" value="" />*@
+                </div>
+                <ul class="pro-search-body">
+                    <li>
+                        <input type="radio" id="checkbox06" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(0)" checked />
+                        <label for="checkbox06"></label><label for="checkbox06" class="ipcheck-label">ALL</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="checkbox01" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(0,100)" />
+                        <label for="checkbox01"></label><label for="checkbox01" class="ipcheck-label">￥0-100</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" id="checkbox02" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(100,199)" /><label for="checkbox02"></label>
+                        <label for="checkbox02" class="ipcheck-label">￥100-199</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" id="checkbox03" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(200,499)" /><label for="checkbox03"></label>
+                        <label for="checkbox03" class="ipcheck-label">￥200-499</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" id="checkbox04" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(500,699)" /><label for="checkbox04"></label>
+                        <label for="checkbox04" class="ipcheck-label">￥500-699</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" id="checkbox05" class="ipcheck regular-checkbox" name="selectPrice" ng-click="compare(700,999)" /><label for="checkbox05"></label>
+                        <label for="checkbox05" class="ipcheck-label">￥700-999</label>
+                    </li>
+                </ul>
+            </div>
+
+            @*<h2 class="single-title">TAGS&nbsp;&nbsp;标签</h2>
+            <div class="pro-tags">
+                <a href="#">Armchair</a>
+                <a href="#">Sofa</a>
+                <a href="#">Table</a>
+                <a href="#">Decor</a>
+                <a href="#">Storage</a>
+                <a href="#">Rugs</a>
+                <a href="#">Lamp</a>
+                <a href="#">Gift</a>
+                <a href="#">Outdoor</a>
+            </div>*@
+        </div>
+
+        <div class="products-box">
+            <ul class="products-list">
+                <li ng-repeat="item in filterDetail = (details |  filter : priceSection)">
+                    <a href="/product/{{ item.Id }}" target="_blank">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">{{ item.Name }}</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="{{ item.Images[0].ThumbnailUrl }}" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥{{ item.Price }}</div>
+                        </div>
+                    </a>
+                </li>
+                <li ng-show="filterDetail.length === 0" style="width:100%">
+                    <div class="alert alert-info" role="alert">
+                        {{'productisempty' | translate}}
+                    </div>
+                </li>
+            </ul>
+                @*<li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Classic</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img01.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Armchair</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img02.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Classic</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img03.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Armchair</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img04.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Classic</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img05.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="pro-item">
+                            <h2 class="name overf">RELATED RRODUCTS</h2>
+                            <p class="sub-name">Armchair</p>
+                            <div class="pic">
+                                <img class="vertical-center" src="~/public/NewHtml/images/pro_img06.jpg" />
+                                <i></i>
+                            </div>
+                            <div class="price">￥3000.00</div>
+                        </div>
+                    </a>
+                </li>*@
+
+        </div>
+    </div>
+</div>
+<!--MAIN END-->
+<!-- product list end-->
+<script type="text/javascript">
+
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-route",
+                            "location": "js/lib/angularjs-route",
+                            "main": "angularjs-route"
+                        },
+                        {
+                            "name": "subscribedMail",
+                            "location": "js/app/subscribedMail",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "searchProduct",
+                            "location": "js/app/searchProduct",
+                            "main": "main"
+                        },
+                        {
+                            "name": "productList",
+                            "location": "js/app/productList",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-route": {
+                            deps: ["angular"]
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "productList"], function (jQuery, ProductList) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new ProductList({
+                                        
+                                    });
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

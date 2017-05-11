@@ -1,0 +1,327 @@
+﻿@model Allure.Web.Models.MainViewModel<Allure.Web.Models.ProductOutput>
+@{
+    Layout = "~/Views/Shared/_Layout_New.cshtml";
+    var product = Model.BodyModel;
+}
+
+@*<link type="text/css" rel="stylesheet" href="/static/css/page/productDetail.css">
+    <link type="text/css" rel="stylesheet" href="/static/js/lib/jquery.magnify/magnify.css">
+    <script type="text/javascript" src="/static/js/lib/jquery.magnify/jquery.magnify.js"></script>*@
+
+<!-- product detail start-->
+<!--BANNER BEGIN-->
+<div class="sub-banner">
+    <img src="~/public/NewHtml/images/pro_banner.jpg" />
+    <div class="sub-content">
+        <h1 class="overf">PRODUCT  DETAIL</h1>
+        <p class="des">Shop through our latest selectio of Armchair and Sofa Allure design.</p>
+        <div class="bread-rumb">
+            <a class="home" href="#">Home</a><em></em>
+            <a href="#">Products</a><em></em>
+            <span>Product Detail</span>
+        </div>
+    </div>
+</div>
+<!--BANNER END-->
+<!--MAIN BEGIN-->
+<div class="pro clearfix" ng-controller="AddProductController" data-product-id="@product.Id" data-product-number="@product.Number" data-product-name="@product.Name" data-product-brand="@product.Brand.Name" data-product-price="@product.Price" data-product-img-url="@product.Images.First().Url">
+    <div class="pro-r">
+        <div class="pro-head">
+            <h1 class="name overf" style="font-weight:bold">@product.EnglishName<span class="chinese">@product.Name</span></h1>
+            <div class="prices">
+                ￥@product.Price <span class="price-orgin" style="display:none">￥@product.OriginalPrice</    span>
+            </div>
+            <p class="brand"><span class="label" style="color:black;font-weight:normal">{{'BrandName' | translate}}：</span>@product.Brand.Name</p>
+        </div>
+
+        <div class="pro-con">
+            <p>{{'ProductId' | translate}}：@product.Number</p>
+            <p>{{'ProductName' | translate}}：@product.Name</p>
+            <p>{{'Madein' | translate}}：@product.Locale.Localized.Name</p>
+            <br />
+            <p style="display:none">{{'Size' | translate}}:<br />W:@product.Width D:@product.Length H:@product.Height </p>
+            <ul class="info">
+                <li>@product.Localized.Descrption</li>
+            </ul>
+        </div>
+
+        <div class="pro-chose">
+            <ul class="chose-physics clearfix" style="display:none">
+                <li>
+                    <p>COLOR</p>
+                    <div class="physics-colors">
+                        <span class="color color-1 cur"></span>
+                        <span class="color color-2"></span>
+                        <span class="color color-3"></span>
+                        <span class="color color-4"></span>
+                    </div>
+                </li>
+
+                <li>
+                    <p>SIZE</p>
+                    <div class="physics-sizes">
+                        <a href="">XS</a>
+                        <a class="cur" href="">S</a>
+                        <a href="">M</a>
+                        <a href="">L</a>
+                        <a href="">XL</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="chose-buy">
+                <label class="fl">QTY</label>
+                <div class="chose-buy-nums">
+                    <a class="subtract" href="###">-</a>
+                    <input class="iptxt" style="line-height:normal" type="text" id="ipt_Qty" value="1" />
+                    <a class="plus" href="###">+</a>
+                </div>
+
+                <a href="#" class="chose-buy-button" ng-click="addShopCar(@product.Id, $event)">{{'Addtocar' | translate}}</a>
+            </div>
+        </div>
+
+        <div class="pro-share clearfix">
+            <label class="fl">SHARE</label>
+            <div class="pro-share-in">
+                <a class="share-link share-qq" href="#"></a>
+                <a class="share-link share-zone" href="#"></a>
+                <a class="share-link share-tx" href="#"></a>
+                <a class="share-link share-wx" href="#"></a>
+                <a class="share-link share-wb" href="#"></a>
+                <a class="share-link share-o" href="#"></a>
+                <a class="share-link share-bai" href="#"></a>
+                <a class="share-link share-dou" href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pro-l clearfix">
+        <div class="pro-samll">
+            <ul>
+                @for (int i = 0; i < product.Images.Length && i < 4; i++)
+                {
+                    <li class="pro-small-item">
+                        <a id="largeimghref" >
+                            <span><img src="@(product.Images[i].Url)" alt=" "><i></i></span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="pro-big">
+            <span><img src="@(product.Images[0].Url)" alt=" "><i></i></span>
+        </div>
+
+    </div>
+</div>
+<div class="grayBg">
+    <div class="pro-relate">
+        <div class="pro-relate-head">
+            <h1 class="head-title"><span>{{'RelatedProducts' | translate}}</span></h1>
+            <p>{{'MayBeYouLike' | translate}}</p>
+        </div>
+
+        <div class="pro-relate-body">
+            <ul class="clearfix">
+                @foreach (var img in ViewBag.relatedProducts)
+                {
+                    <li>
+                        <a href="/product/@img.Id">
+                            <div class="pro-item">
+                                <h2 class="name overf">{{'RelatedProducts' | translate}}</h2>
+                                <p class="sub-name">@img.Name</p>
+                                <div class="pic">
+                                    <img class="vertical-center" src="@(img.Images[0].Url)" />
+                                    <i></i>
+                                </div>
+                                <div class="price">￥@img.Price</div>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!--MAIN END-->
+<!-- product detail end-->
+<script type="text/javascript">
+
+    var require = (function () {
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "proshow",
+                            "location": "js/HtmlNew",
+                            "main": "proshow"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "searchProduct",
+                            "location": "js/app/searchProduct",
+                            "main": "main"
+                        },
+                        {
+                            "name": "addProduct",
+                            "location": "js/app/productDetail",
+                            "main": "addProductToShopCar"
+                        },
+                        {
+                            "name": "productDetail",
+                            "location": "js/app/productDetail",
+                            "main": "main"
+                        },
+                        {
+                            "name": "subscribedMail",
+                            "location": "js/app/subscribedMail",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        },
+                        {
+                            "name": "jquery.magnify",
+                            "location": "js/lib/jquery.magnify",
+                            "main": "jquery.magnify"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "productDetail", "proshow"], function (jQuery, ProductDetail, Proshow) {
+                            jQuery(document.body).ready(
+                                function () {
+                                    new ProductDetail();
+                                    jQuery.yulanscr({
+                                        gaoliang: 'cur',           //选中后的高亮类
+                                        kuandu: 625,              //需要滚动的宽度 图片的高度加上间距,要多加一个间距
+                                        sudu: 700,                //滚动速度
+                                        xianshi: 5,               //显示个数
+                                        bigimg: '.pro-big>span img',           //展示对象
+                                        scrbar: '.pro-samll ul',            //滚动对象
+                                        left: '#up',               //上一页
+                                        right: '#down'               //下一页
+                                    });
+                                    //color
+                                    jQuery(".physics-colors .color").click(function () {
+                                        jQuery(this).addClass("cur");
+                                        jQuery(this).siblings().removeClass("cur");
+                                    })
+                                    //size
+                                    jQuery(".physics-sizes a").click(function () {
+                                        jQuery(this).addClass("cur");
+                                        jQuery(this).siblings().removeClass("cur");
+                                    })
+                                    //add qty
+                                    jQuery(".plus").click(function () {
+                                        var curVal = $("#ipt_Qty").val()
+                                        if (!/^[0-9]+$/.test(curVal)) {
+                                            $("#ipt_Qty").val(0);
+                                        }
+                                        else {
+                                            var val = parseInt($("#ipt_Qty").val()) + 1;
+                                            $("#ipt_Qty").val(val);
+                                        }
+                                    });
+
+                                    //delete qty
+                                    jQuery(".subtract").click(function () {
+                                        var curVal = $("#ipt_Qty").val()
+                                        if (!/^[0-9]+$/.test(curVal)) {
+                                            $("#ipt_Qty").val(0);
+                                        }
+                                        else {
+                                            if (curVal == 0) {
+                                                $("#ipt_Qty").val(0);
+                                            }
+                                            else {
+                                                var val = parseInt($("#ipt_Qty").val()) - 1;
+                                                $("#ipt_Qty").val(val);
+                                            }
+                                        }
+                                    });
+                                });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

@@ -1,0 +1,166 @@
+﻿@model Allure.Web.Models.MainViewModel
+
+<!-- nav start  -->
+<div class="al-nav-wrap navbar-fixed-top">
+    <div class="al-nav-area">
+        <div class="al-nav-info">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid navbar-right">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        @if (!Model.IsSimpleModel)
+                        {
+                            if (this.CurrentUser == null)
+                             {
+                                 <li>
+                                     <a href="javascript:void(0)">{{'My Projects' | translate}}</a>
+                                 </li>
+                             }
+                             else
+                             {
+                                 <li class="allure-dropdown dropdown">
+                                     <a href="javascript:void(0)" class="dropdown-toggle">{{'My Projects' | translate}}</a>
+                                     <ul class="dropdown-menu" role="menu">
+                                         <li><a href="/order/list">{{'My Order' | translate}}</a></li>
+                                     </ul>
+                                 </li>
+                             }
+                            @*<li><a href="#">{{'Trade' | translate}}</a></li>*@
+                            if (this.CurrentUser == null)
+                             {
+                                 <li><a href="/user/login" target="_blank">{{'login' | translate}}</a></li>
+                                 <li><a href="/user/register" target="_blank">{{'register' | translate}}</a></li>
+                             }
+                             else
+                             {
+                                 <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-user"></span>&nbsp; {{'Welcome' | translate}} @this.CurrentUser.FirstName @this.CurrentUser.LastName</a></li>
+                                 <li><a href="/user/logout">{{'Logout' | translate}}</a></li>
+                            }
+                        }
+                        else
+                        {
+                            <li><a href="/">{{'home' | translate}}</a></li>
+                        }
+                        <li class="dropdown language" ng-controller="switchLanguageCtrl">
+                            <!-- language start -->
+                            <a href="javascript:void(0)" class="dropdown-toggle">{{'language' | translate}}</a>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var lang in Model.Languages)
+                                {
+                                    <li><a href="" ng-click="addLanguage('@lang.Code');" code="@lang.Code">@lang.Description</a></li>
+                                }
+                            </ul>
+                            <!-- language end -->
+                        </li>
+                        @if (!Model.IsSimpleModel)
+                        {
+                            <li class="shop-car dropdown" ng-controller="ShopCarController" is-open="productType.status.isopen">
+                                <a href="#" class="dropdown-toggle" ng-disabled="disabled">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    <span class="number" ng-cloak>{{productType.typeNum}}</span>
+                                </a>
+                                <div class="shop-car-list dropdown-menu" role="menu" ng-click="stopPro($event)">
+                                    <div class="product-list" ng:show="productType.shopCars.length > 0">
+                                        <div class="al-table">
+                                            <div class="al-row">
+                                                <div class="img">
+                                                    {{'Product' | translate}}
+                                                </div>
+                                                <div class="number">
+                                                    {{'Number' | translate}}
+                                                </div>
+                                                <div class="price">
+                                                    <span>{{'Price' | translate}}</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span>{{'Account' | translate}}</span>
+                                                </div>
+                                                <div class="delete"></div>
+                                            </div>
+                                            <div class="al-row" ng:repeat="product in productType.shopCars">
+                                                <div class="img">
+                                                    <img src="{{product.imgUrl}}" width="100" height="100"/>
+                                                </div>
+                                                <div class="number">
+                                                    <input type="text" ng-model="product.number" class="form-control" value="{{product.number}}"/>
+                                                </div>
+                                                <div class="price">
+                                                    <span>{{product.price | number:2}}</span>
+                                                </div>
+                                                <div class="price">
+                                                    <span>{{product.price * product.number| number:2}}</span>
+                                                </div>
+                                                <div class="delete">
+                                                    <span class="glyphicon glyphicon-remove" ng-click="delete($index)"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-sum">
+                                            <span class="title">{{'TotalMoney' | translate}}:</span><span class="total">¥{{productType.sum()| number:2}}</span>
+                                        </div>
+                                        <div class="order-submit" style="text-align: right;"><a href="/order" style="border-radius: 0;" class="btn btn-primary" target="_blank">{{'checkout' | translate}}</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="shop-car-empty" ng:show="productType.shopCars.length === 0">
+                                        <div class="alert alert-info" role="alert">
+                                            {{'shopcarsempty' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+              </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- nav end -->
+
+<!-- logo start -->
+<div class="al-logo-wrap">
+    <div class="al-logo-area">
+        <div class="al-logo-info">
+            <a href="/"><img src="/static/imgs/logo_icon.jpg" width="421" height="51" /></a>
+        </div>
+    </div>
+</div>
+<!-- log end -->
+
+<!-- menu start-->
+@if (!Model.IsSimpleModel)
+{
+    <div class="al-menu-wrap">
+        <div class="al-menu-area">
+            <div class="al-menu-info">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse">
+                            <ul class="menu-ul-list nav navbar-nav">
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li ng-controller="ShowSubController" ng-class="isShowSubMenu ? 'open': ''" ng-mouseenter="isShowSubMenu = true" ng-mouseleave="isShowSubMenu = false">
+                                        <a href="javascript:void(0)">@category.Localized.Name</a>
+                                        <ul class="dropdown-menu" role="menu" ng-show="isShowSubMenu">
+                                            @foreach (var subCategory in category.Children)
+                                            {
+                                                <li><a href="/category/@subCategory.Id">@subCategory.Localized.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                <li class="search" ng-controller="SearchProductController">
+                                    <input type="text" class="form-control" placeholder=" {{'Search' | translate}}" ng-model="searchKey" ng-keyup="searchKeyup($event)" />
+                                    <button type="submit" class="glyphicon glyphicon-search" ng-click="submitSearch()"></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+}
+<!-- menu end -->

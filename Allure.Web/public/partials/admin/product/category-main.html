@@ -1,0 +1,49 @@
+<style type="text/css">
+    .client-row{
+        /*width: 782px;*/
+        width: 810px;
+        margin-bottom: 30px;
+    }
+    .description .content{
+        min-height: 100px;
+    }
+    .form-group{
+        margin-top:15px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="page-content-header row">
+	    	<div class="col-lg-10">
+	        	<h4>{{title}}</h4>
+	        </div>
+        </div>
+        <div class="client-page">
+            <div class="client-row row" style="margin-bottom:0" ng-show="alerts.length > 0">
+                <allure-alerts ng-model="alerts" class="col-lg-12"></allure-alerts>
+            </div>
+            <div class="client-row row">
+                <div class="col-lg-12" >
+                    <ul class="row">
+                        <li ng-repeat="item in category.localizations" class="form-horizontal">
+                            <h5>{{item.title}}</h5>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">名字:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" ng-model="item.name"  />
+                                </div>
+                                <label  class="col-sm-2 control-label">描述:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" ng-model="item.description"  />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <input id="submitbtn" type="button" class="btn btn-primary col-lg-12" value="保存" ng-click="submitCategory()" submitbtn />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

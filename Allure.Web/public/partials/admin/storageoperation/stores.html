@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="page-content-header">
+	    	<div class="col-lg-10">
+	        	<h4>库存</h4>
+	        </div>
+        </div>
+         <div class="col-lg-12">
+         	<allure-collapsed ng-model="isCollapsed"></allure-collapsed>
+	    	<form role="form" collapse="!isCollapsed">
+	    		<div class="row">
+	             	<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">货号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.number" />
+		                </div>
+		            </div>
+					<div class="form-group col-lg-4">
+						<label class="col-sm-4 control-label input-sm">品名</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.name" />
+		                </div>
+					</div>
+					<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">品牌</label>
+		                <div class="col-sm-8">
+                            <select class="form-control input-sm" ng-model="search.brandid">
+                                <option value>请选择</option>
+                                <option ng-repeat="brand in brands" value="{{brand.id}}">{{brand.name}}</option>
+                            </select>
+
+		                </div>
+		            </div>
+				</div>
+				<div class="row">
+					<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">大分类</label>
+		                <div class="col-sm-8">
+		                	<select class="form-control input-sm" ng-model="search.parentCategoryId">
+		                		<option value="">请选择</option>
+		                		<option ng-repeat="large in largeCatergories" value="{{large.id}}">{{large.name}}</option>
+		                	</select>
+		                </div>
+		            </div>
+					<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">小分类</label>
+		                <div class="col-sm-8">
+		                    <select class="form-control input-sm" ng-model="search.categoryid">
+		                		<option value="">请选择</option>
+		                		<option ng-repeat="small in smallCatergories" value="{{small.id}}">{{small.name}}</option>
+		                	</select>
+		                </div>
+		            </div>
+                    <div class="form-group col-xs-4">
+                        <label class="col-xs-4 control-label input-sm">价格</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control input-sm" style="width:58px;" ng-model="search.minPrice" />
+                            -
+                            <input type="text" class="form-control input-sm" style="width:59px;" ng-model="search.maxPrice" />
+                        </div>
+                    </div>
+                    <!--<div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">产地</label>
+                        <div class="col-sm-8">
+                            <select class="form-control input-sm" ng-model="search.locale">
+                                <option value>请选择</option>
+                                <option ng-repeat="locale in locales" value="{{locale.id}}">{{locale.name}}</option>
+                            </select>
+                        </div>
+                    </div>-->
+		            <!--<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">创建时间</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.created_at" />
+		                </div>
+		            </div>-->
+				</div>				
+				<!--<div class="row">
+					<div class="form-group col-lg-8">
+		                <label class="col-sm-2 control-label input-sm">有效期间</label>
+		                <div class="col-sm-10" style="padding-left:10px;">
+	                        <alluredatepicker ng-model="search.start" datepicker-width="120"></alluredatepicker>
+	                        <div class="pull-left" style="width: 16px;text-align: center;vertical-align: middle;line-height: 34px;">-</div>
+	                        <alluredatepicker ng-model="search.end" datepicker-width="120"></alluredatepicker>
+		                </div>
+		            </div>
+				</div>-->
+				<div class="row">
+	                <div class="col-lg-4 form-group">
+	                    <div class="col-sm-offset-4 col-sm-8">
+	                        <button ng-click="searchFn()" class="btn btn-default input-sm">检索</button>
+	                    </div>
+	                </div>
+	            </div>
+			</form>
+			<table class="table table-striped">
+	      		<thead>
+					<tr>	
+						<th class="col-sm-1" style="width:6%">#</th>
+						<th class="col-sm-1">货号</th>
+						<th class="col-sm-1">品名</th>
+						<th class="col-sm-2">当前可用库存数</th>
+						<th class="col-sm-1" style="width:10%">冻结库存数</th>
+						<th class="col-sm-1">总库存数</th>
+						<th class="col-sm-1">品牌</th>
+						<th class="col-sm-1">分类</th>
+						<th class="col-sm-2">有效时间</th>
+					</tr>
+				</thead>
+	      		<tbody>
+	        		<tr ng-repeat="item in list">
+						<td>{{$index + 1}}</td>
+						<td>{{item.number}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.current}}</td>
+						<td>{{item.frozen}}</td>
+						<td>{{item.current-0 + item.frozen-0}}</td>
+						<td>{{item.brandName}}</td>
+						<td>{{item.categoryName}}</td>
+						<td>{{item.start| date:'yyyy-MM-dd'}} - {{item.end| date:'yyyy-MM-dd'}}</td>
+	        		</tr>
+	      		</tbody>
+	    	</table>
+             <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+
+		</div>
+    </div>
+</div>

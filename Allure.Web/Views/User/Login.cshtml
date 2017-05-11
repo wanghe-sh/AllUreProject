@@ -1,0 +1,174 @@
+@{
+    Layout = "~/Views/Shared/_Layout_New.cshtml";
+}
+@*<link type="text/css" rel="stylesheet" href="/static/css/page/login.css">*@
+<!--BANNER BEGIN-->
+<div class="sub-banner">
+    <img src="~/public/NewHtml/images/pro_banner.jpg" />
+</div>
+<!--BANNER END-->
+
+<!--MAIN BEGIN-->
+<section class="w1200 user-section">
+    <h1 class="user-head">{{'UserLogin' | translate}}</h1>
+
+    <div class="user-body">
+        <form class="form-horizontal register-form" name="registerForm" action="/user/login" method="post">
+            @if (ViewBag.LoginFail)
+            {
+                <div>
+                    <div class="alert alert-warning" role="alert">
+                        <span>{{'LoginFail' | translate}}</span>
+
+                    </div>
+                </div>
+            }
+            <div class="user-body">
+                <ul>
+                    <li class="form-item form-item-120 clearfix">
+                        <label>{{'email' | translate}}£º</label>
+                        <div>
+                            <input class="iptxt iptxt-p30" type="text" name="email" id="email" placeholder="{{'email' | translate}}" />
+                        </div>
+                    </li>
+
+                    <li class="form-item form-item-120 clearfix">
+                        <label>{{'password' | translate}}£º</label>
+                        <div>
+                            <input class="iptxt iptxt-p30" type="password" name="plainTextPassword" id="plainTextPassword" placeholder="{{'password' | translate}}" />
+                        </div>
+                    </li>
+
+                    <li class="form-item form-item-120 clearfix">
+                        <label>&nbsp;</label>
+                        <div>
+                            <button type="submit" class="btn btn-default">{{'Login' | translate}}</button>
+                            <a href="/user/findpassword" target="_blank">{{'ForgotPassword' | translate}}</a>
+                            <a href="/user/register" target="_blank">{{'register' | translate}}</a>
+                            <input type="hidden" name="returnUrl" id="returnUrl" value="@ViewBag.ReturnUrl" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+    </div>
+</section>
+<!--MAIN END-->
+
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                           "name": "jquery",
+                           "location": "js/lib/jquery",
+                           "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "validate",
+                            "location": "js/plugin/validate",
+                            "main": "jquery-validate"
+                        },
+                        {
+                            "name": "login",
+                            "location": "js/app/login",
+                            "main": "main"
+                        },
+                         {
+                             "name": "subscribedMail",
+                             "location": "js/app/subscribedMail",
+                             "main": "main"
+                         },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "validate": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "login"], function (jQuery, Login) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new Login();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

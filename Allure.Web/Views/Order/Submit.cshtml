@@ -1,0 +1,315 @@
+﻿@using Allure.Core.Models
+@model Allure.Web.Models.MainViewModel
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/productOrder.css">
+
+<!-- product Order submit start-->
+  <div class="al-product-order-wrap">
+    <div class="al-product-order-area">
+      <div class="al-product-order-info" ng-controller="orderSubmitFormCtrl">
+                <div ng-controller="alertCtrl" ng-cloak class="alert-area">
+                  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                </div>
+                <h3>{{'userorder' | translate}}</h3>
+                <div class="product-order-form">
+                    <form class="form-inline submit-order-form" name="submitOrderForm">
+                        <div class="validate-goods">
+                            <h4 class="title">
+                                <span>{{'ValidateGoods' | translate}}:</span>
+                                <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+
+                                <div class="form-group" style="width: 100%; margin-bottom: 10px;">
+                                    <div class="line">
+                                        <div class="form-group">
+                                            
+                                                <label for="willCheck" style="width:150px">{{'willCheck' | translate}}:</label>
+                                                <label>
+                                                    <input type="radio" name="willCheck" ng-model="product.willCheck" ng-value="true">{{'Yes' | translate}}
+                                                    <input type="radio" name="willCheck" ng-model="product.willCheck" ng-value="false">{{'No' | translate}}
+                                                </label>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="line">
+                                        <div class="form-group">
+                                            <label for="checkAddress" style="width:150px">{{'checkAddress' | translate}}:</label>
+                                            <input type="text" name="checkAddress" id="checkAddress" ng-model="product.checkAddress" class="form-control size-5" value="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="line">
+                                        <div class="form-group">
+                                            <label for="checkContact" style="width:150px">{{'checkContact' | translate}}:</label>
+                                            <input type="text" class="form-control" ng-model="product.checkContact" name="checkContact" id="checkContact" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="delivery-info">
+                            <h4 class="title">
+                                <span>{{'DeliveryInfo' | translate}}:</span>
+                                <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div >
+                                @for (int i = 0; i < this.CurrentUser.Deliveries.Count; i++) //foreach (var delivery in this.CurrentUser.Deliveries)
+                                {
+                                    UserDelivery delivery = this.CurrentUser.Deliveries.ToList()[i];
+                                    if (i == 0 && (!string.IsNullOrWhiteSpace(delivery.Receiver) ||
+                                     !string.IsNullOrWhiteSpace(delivery.Phone) ||
+                                     !string.IsNullOrWhiteSpace(delivery.PostCode) ||
+                                     !string.IsNullOrWhiteSpace(delivery.Address)))
+                                    {
+                                        <div class="form-group" style="width: 100%; margin-bottom: 10px;">
+                                            <div class="line">
+                                                <div class="form-group">
+                                                    <label for="receiverName" style="width: 150px">{{'receiverName' | translate}}:</label>
+                                                    <input type="text" class="form-control" name="receiverName" ng-model="product.receiverName" id="receiverName" ng-init="product.receiverName='@delivery.Receiver'">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="receiverContact" style="width: 150px">{{'receiverContact' | translate}}:</label>
+                                                    <input type="text" class="form-control" name="receiverContact" ng-model="product.receiverContact" ng-init="product.receiverContact='@delivery.Phone'" id="receiverContact" value="@delivery.Phone">
+                                                </div>
+                                            </div>
+                                            <div class="line">
+                                                <div class="form-group">
+                                                    <label for="receiverPostCode" style="width: 150px">{{'receiverPostCode' | translate}}:</label>
+                                                    <input type="text" class="form-control" name="receiverPostCode" ng-model="product.receiverPostCode" ng-init="product.receiverPostCode='@delivery.PostCode'" id="receiverPostCode" value="@delivery.PostCode">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="receiverAddress" style="width: 150px">{{'receiverAddress' | translate}}:</label>
+                                                    <input type="text" class="form-control  size-5" name="receiverAddress" ng-model="product.receiverAddress" id="receiverAddress" ng-init="product.receiverAddress='@delivery.Address'" value="@delivery.Address">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="order-detail">
+                            <h4 class="title">
+                                <span>{{'OrderDetail' | translate}}:</span>
+                                 <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                <div class="line">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                      <th>{{'ProductId' | translate}}</th>
+                                      <th>{{'Name' | translate}}</th>
+                                      <th>{{'Brand' | translate}}</th>
+                                      <th>{{'Price' | translate}}</th>
+                                      @*<th>{{'Discount' | translate}}</th>*@
+                                      <th>{{'Number' | translate}}</th>
+                                      <th>{{'Account' | translate}}</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                  <tr class="al-row" ng:repeat="product in productType.shopCars">
+                                      <td>{{product.productnumber}}</td>
+                                      <td>{{product.name}}</td>
+                                      <td>{{product.brand}}</td>
+                                      <td>{{product.price| number:2}}</td>
+                                      @*<td>{{product.discount}}</td>*@
+                                      <td>{{product.number}}</td>
+                                      <td>{{product.number * product.price| number:2}}  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="order-account">
+                                <div>
+                                    <span>{{'Account' | translate}}:</span>
+                                    <span>¥{{productType.sum()| number:2}}</span>
+                                </div>
+                                <div>
+                                    <span>{{'Discount' | translate}}:</span>
+                                    <span>¥0</span>
+                                </div>
+                                <div>
+                                    <span>{{'paycash' | translate}}:</span>
+                                    <span>¥{{productType.sum()| number:2}}</span>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="pay-info">
+                            <h4 class="title">
+                                <span>{{'PayInfo' | translate}}:</span>
+                                 <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                <div class="line">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span>{{'paymentreceived' | translate}}:</span>
+                                        <span>0.00</span>
+                                        @*<span class="pay-received">payment received:</span>
+                                        <span><input type="checkbox"/></span>*@
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>{{'Paydeadline' | translate}}:</span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span>{{'remainingsum' | translate}}:</span>
+                                        <span>0.00</span>
+                                        @*<span class="pay-received">remaining sum:</span>
+                                        <span><input type="checkbox"/></span>*@
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>{{'Paydeadline' | translate}}:</span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <div class="order-submit">
+                            <input type="submit" id="submitOrder" ng-click="submitOrder($event)" class="btn btn-primary" value="{{'Submit' | translate}}"/>
+                        </div>
+                    </form>
+                </div>
+      </div>
+    </div>
+  </div>
+<!-- product Order submit end-->
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "jquery-validate",
+                            "location": "js/plugin/validate",
+                            "main": "jquery-validate"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "searchProduct",
+                            "location": "js/app/searchProduct",
+                            "main": "main"
+                        },
+                        {
+                            "name": "addProduct",
+                            "location": "js/app/productDetail",
+                            "main": "addProductToShopCar"
+                        },
+                        {
+                            "name": "submitOrder",
+                            "location": "js/app/order/submit",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "jquery-validate": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "submitOrder"], function (jQuery, SubmitOrder) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new SubmitOrder();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

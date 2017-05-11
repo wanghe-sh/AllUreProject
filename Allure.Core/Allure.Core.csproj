@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FABFAF3F-5563-4705-A5A4-0D81A8C910BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Allure.Core</RootNamespace>
+    <AssemblyName>Allure.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Criteria\CheckAddresses\UpdateAddress.cs" />
+    <Compile Include="Criteria\Brands\AddBrand.cs" />
+    <Compile Include="Criteria\Brands\UpdateBrand.cs" />
+    <Compile Include="Criteria\Categories\AddCategory.cs" />
+    <Compile Include="Criteria\Categories\UpdateCategory.cs" />
+    <Compile Include="Criteria\Images\AddImage.cs" />
+    <Compile Include="Criteria\Languages\UpdateLanguage.cs" />
+    <Compile Include="Criteria\Languages\AddLanguage.cs" />
+    <Compile Include="Criteria\Locales\UpdateLocale.cs" />
+    <Compile Include="Criteria\Locales\AddLocale.cs" />
+    <Compile Include="Criteria\Localization.cs" />
+    <Compile Include="Criteria\Logistics\UpdateLogistic.cs" />
+    <Compile Include="Criteria\Logistics\AddLogistic.cs" />
+    <Compile Include="Criteria\Orders\SearchOrder.cs" />
+    <Compile Include="Criteria\Orders\UpdateOrder.cs" />
+    <Compile Include="Criteria\Products\UpdateProduct.cs" />
+    <Compile Include="Criteria\Products\AddProduct.cs" />
+    <Compile Include="Criteria\SearchResult.cs" />
+    <Compile Include="Criteria\Products\SearchProduct.cs" />
+    <Compile Include="Criteria\StorageOperations\UpdateStorageOperation.cs" />
+    <Compile Include="Criteria\StorageOperations\SearchStorageOperation.cs" />
+    <Compile Include="Criteria\StorageOperations\AddStorageOperation.cs" />
+    <Compile Include="Criteria\SubscribedMails\AddSubscribedMail.cs" />
+    <Compile Include="Criteria\Users\AddUser.cs" />
+    <Compile Include="Criteria\Users\SearchUser.cs" />
+    <Compile Include="Criteria\Users\UpdateUser.cs" />
+    <Compile Include="Criteria\Warehouses\UpdateWarehouse.cs" />
+    <Compile Include="Criteria\Warehouses\AddWarehouse.cs" />
+    <Compile Include="Exceptions\ConflictException.cs" />
+    <Compile Include="Exceptions\ForbiddenException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Models\CheckAddress.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\ProductStorage.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\StorageOperationDetail.cs" />
+    <Compile Include="Models\StorageOperationType.cs" />
+    <Compile Include="Models\StorageOperation.cs" />
+    <Compile Include="Models\SubscribedMail.cs" />
+    <Compile Include="Models\UserDelivery.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\ILocalized.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\Locale.cs" />
+    <Compile Include="Models\CategoryLocalization.cs" />
+    <Compile Include="Models\LocaleLocalization.cs" />
+    <Compile Include="Models\ProductLocalization.cs" />
+    <Compile Include="Models\Logistic.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\UserStatus.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ICheckAddressRepository.cs" />
+    <Compile Include="Repositories\IStorageOperationRepository.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
+    <Compile Include="Repositories\ISubscribedMailRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\IWarehouseRepository.cs" />
+    <Compile Include="Repositories\ILogisticRepository.cs" />
+    <Compile Include="Repositories\IBrandRepository.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\ILanguageRepository.cs" />
+    <Compile Include="Repositories\IImageRepository.cs" />
+    <Compile Include="Repositories\ILocaleRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Validations\StorageOperations\OrderRequiredDependsOnType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Allure.Common\Allure.Common.csproj">
+      <Project>{550618e8-826f-49d9-8a0e-4c117e38226a}</Project>
+      <Name>Allure.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

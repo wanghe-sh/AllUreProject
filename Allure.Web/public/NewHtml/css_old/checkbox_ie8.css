@@ -1,0 +1,17 @@
+INPUT[type=radio],
+INPUT[type=checkbox]{
+	display: inline-block !important;
+	margin-right: 20px;
+}
+
+.ipcheck + label {
+	display: none;
+}
+
+.ipcheck,
+label{
+	vertical-align: middle;
+}
+
+
+

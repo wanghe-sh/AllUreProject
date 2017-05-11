@@ -1,0 +1,19 @@
+{
+  "name": "bxslider-4",
+  "version": "0.1.1",
+  "main": [
+    "jquery.bxslider.js",
+    "jquery.bxslider.css"
+  ],
+  "dependencies": {},
+  "homepage": "https://github.com/bolster/bxslider-4",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "4f620fd1f046cbcb9eb3c90f68dd5356e639ad46"
+  },
+  "_source": "git://github.com/bolster/bxslider-4.git",
+  "_target": "~0.1.1",
+  "_originalSource": "bolster.bxSlider"
+}

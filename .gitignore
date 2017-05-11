@@ -1,0 +1,23 @@
+# Files ignored
+
+# Folders ignored
+[Bb]in/
+#[Dd]ebug*/
+#[Rr]elease*/
+obj/
+[Tt]est[Rr]esult*
+*.csproj.user
+upload/
+
+# NuGet files
+packages/
+*.nupkg
+
+# Publish Web Output
+*.Publish.xml
+
+# Publish profiles
+*/Properties/PublishProfiles/
+
+# higher version of VS
+.vs/

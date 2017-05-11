@@ -1,0 +1,60 @@
+﻿<!--FOOTER BEGIN-->
+<footer class="footer">
+    <div class="foot clearfix">
+        <div class="foot-help">
+            <p>{{'LETUSHELPYOU' | translate}}</p>
+            <ul class="foot-help-in">
+                <li>
+                    <p>Jim Mai</p>
+                    <p>021-3376 3068</p>
+                    <p>021-3376 3070 Fax</p>
+                    <p><a href="mailto:jim.mai@allureco.biz">jim.mai@allureco.biz</a></p>
+                </li>
+                <li>
+                    <p>Allure Co.,Ltd.(Shanghai Office)</p>
+                    <p>{{'HelpAddress1' | translate}}</p>
+                    <p>{{'HelpAddress2' | translate}}</p>
+                    <p>{{'HelpAddress3' | translate}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="foot-menu">
+            <p>{{'ABOUTUS' | translate}}</p>
+            <div class="foot-menu-in">
+                <a href="/home/about">{{'COMPANYINFO' | translate}}</a>
+                <a href="/home/terms">{{'TERMSCONDITIONS' | translate}}</a>
+                <a href="/home/privacy">{{'PRIVACYPOLICY' | translate}}</a>
+                <a href="/home/salespolicy">{{'SALESPOLICY' | translate}} </a>
+                <a href="/home/support">{{'CONTACT' | translate}}</a>
+            </div>
+        </div>
+
+        <div class="foot-send" ng-controller="SubscribedMailController">
+            <p>SIGN UP FOR NEWSLETTER</p>
+            <div class="foot-send-in">
+                <input class="ipbtn" type="button" name="" id="btnSmailSubmit" value="{{'Submit' | translate}}" ng-click="submitMail()" />
+                <input class="iptxt" id="txtSmail" type="text" placeholder="Enter your email address" />
+            </div>
+        </div>
+
+        <div class="foot-share">
+            <p>分享</p>
+            <div class="foot-share-in">
+                <a class="share-link share-qq" href="#"></a>
+                <a class="share-link share-zone" href="#"></a>
+                <a class="share-link share-tx" href="#"></a>
+                <a class="share-link share-wx" href="#"></a>
+                <a class="share-link share-wb" href="#"></a>
+                <a class="share-link share-o" href="#"></a>
+                <a class="share-link share-bai" href="#"></a>
+                <a class="share-link share-dou" href="#"></a>
+            </div>
+        </div>
+
+        <div class="foot-logo">
+            <a href="#"><img src="~/public/NewHtml/images/foot_logo.jpg" /></a>
+        </div>
+    </div>
+</footer>
+<!--FOOTER END-->
+<script type="text/javascript" src="/static/js/lib/requirejs/require.js"></script>

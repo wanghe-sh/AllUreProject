@@ -1,0 +1,128 @@
+﻿
+<link type="text/css" rel="stylesheet" href="/static/css/page/login.css">
+<div class="al-login-wrap">
+    <div class="al-login-area">
+        <div class="al-login-info">
+            <div class="al-login-text">
+                <h3>{{'TERMSCONDITIONS' | translate}}</h3>
+                <div>
+                    <div class="alert alert-success" role="alert">
+                        <span>{{'TERMSCONDITIONS' | translate}}</span>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                <script type="text/javascript">
+                    var require = (function () {
+
+                        return {
+                            "callback": function () {
+                                var deps = ["require", "jquery"];
+
+                                require.config({
+                                    "waitSeconds": 0,
+
+                                    "baseUrl": "/static",
+
+                                    "packages": [
+                                        {
+                                            "name": "jquery",
+                                            "location": "js/lib/jquery",
+                                            "main": "jquery-1.9.1"
+                                        },
+                                        {
+                                            "name": "angular",
+                                            "location": "js/lib/angularjs",
+                                            "main": "angular"
+                                        },
+                                        {
+                                            "name": "angularjs-bootstrap",
+                                            "location": "js/lib/angularjs-bootstrap",
+                                            "main": "ui-bootstrap-tpls"
+                                        },
+                                        {
+                                            "name": "bootstrap",
+                                            "location": "js/plugin/bootstrap",
+                                            "main": "bootstrap"
+                                        },
+                                        {
+                                            "name": "mediaelement",
+                                            "location": "js/plugin/media",
+                                            "main": "mediaelement"
+                                        },
+                                        {
+                                            "name": "jquery-cookie",
+                                            "location": "js/plugin/jquery-cookie",
+                                            "main": "jquery-cookie"
+                                        },
+                                        {
+                                            "name": "shopCar",
+                                            "location": "js/app/shopCar",
+                                            "main": "main"
+                                        },
+                                        {
+                                            "name": "searchProduct",
+                                            "location": "js/app/searchProduct",
+                                            "main": "main"
+                                        },
+                                        {
+                                            "name": "alabout",
+                                            "location": "js/app/about",
+                                            "main": "main"
+                                        },
+                                        {
+                                            "name": "angular-translate",
+                                            "location": "js/lib/angularjs-translate",
+                                            "main": "angular-translate"
+                                        },
+                                        {
+                                            "name": "angular-translate-loader-static-files",
+                                            "location": "js/lib/angularjs-translate-loader-static-files",
+                                            "main": "angular-translate-loader-static-files"
+                                        }
+                                    ],
+
+                                    "shim": {
+                                        "bootstrap": {
+                                            deps: ["jquery"],
+                                            init: function ($) {
+                                                return $;
+                                            }
+                                        },
+                                        "angularjs-bootstrap": {
+                                            deps: ["angular"]
+                                        },
+                                        "angular-translate": {
+                                            deps: ["angular"],
+                                            init: function ($) {
+                                                return $;
+                                            }
+                                        },
+                                        "angular-translate-loader-static-files": {
+                                            deps: ["angular-translate"],
+                                            init: function ($) {
+                                                return $;
+                                            }
+                                        }
+                                    },
+
+                                    "deps": deps,
+
+                                    "callback": function (localRequire) {
+                                        localRequire(["jquery", "alabout"], function (jQuery, alabout) {
+                                            jQuery(document.body).ready(
+                                                function () {
+                                                    new alabout();
+                                                });
+                                        });
+                                    }
+                                });
+                            }
+                        };
+                    })();
+                </script>
