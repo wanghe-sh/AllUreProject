@@ -1,0 +1,61 @@
+<link rel="stylesheet" type="text/css" href="/public/lib/bolster.bxSlider/jquery.bxslider.css" />
+<style type="text/css">
+	.bx-wrapper .bx-viewport{
+		box-shadow: none;
+	}
+	.bx-wrapper .bx-next{
+		right: -30px;
+	}
+	.bx-wrapper .bx-prev{
+		left: -40px;
+	}
+</style>
+<div class="wrap-imageupload">
+	<div class="modal-header">
+	    <h3 class="modal-title">选择图片</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-horizontal row">
+			<div class="form-group">
+                <label class="col-sm-2 control-label input-sm">大分类</label>
+                <div class="col-sm-6">
+                    <select class="form-control input-sm" ng-model="product.largeCatergory">
+                    	<option value="">请选择</option>
+                    	<option ng-repeat="catergory in largeCatergories" value="{{catergory.id}}">{{catergory.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label input-sm">小分类</label>
+                <div class="col-sm-6">
+                    <select class="form-control input-sm" ng-model="product.smallCatergory">
+                    	<option value="">请选择</option>
+                    	<option ng-repeat="catergory in smallCatergories" value="{{catergory.id}}" ng-selected="product.smallCatergory == catergory.id">{{catergory.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label input-sm">产品代码</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control input-sm" ng-model="product.id" ng-enter="queryProduct()"/>
+                </div>
+            </div>
+		</div>
+		<div class="row" ng-show="product.images">
+			<div class="col-sm-7">
+				<div>待选图片：</div>
+	            <ul class="bxslider"> 
+	            	<li ng-repeat="image in product.images"><img ng-src="{{image.small}}" imageonload="completedLoad()" ng-model="image.status" ng-click="setImage($index)"/></li>
+				</ul>
+			</div>
+			<div class="col-sm-4">
+				<div>已选图片：</div>
+				<img ng-src="{{currentImage}}" ng-show="currentImage" style="width:100px"/>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">确定</button>
+	    <button class="btn btn-default" ng-click="cancel()">取消</button>
+	</div>
+</div>

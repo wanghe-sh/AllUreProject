@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="page-content-header">
+	    	<div class="col-lg-10">
+	        	<h4>库存操作履历</h4>
+	        </div>
+        </div>
+         <div class="col-lg-12">
+         	<allure-collapsed ng-model="isCollapsed"></allure-collapsed>
+	    	<form role="form" collapse="!isCollapsed">
+	    	<form role="form">
+	    		<div class="row">
+	             	<div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.number" />
+		                </div>
+		            </div>
+					<div class="form-group col-lg-3">
+						<label class="col-sm-4 control-label input-sm">订单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.orderNumber" ng-enter="queryOrderNumber()"/>
+		                </div>
+					</div>
+					<div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">创建时间</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.created_at" />
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">更新时间</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.updated_at" />
+		                </div>
+		            </div>
+				</div>
+				<div class="row">
+					<div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">物流公司</label>
+		                <div class="col-sm-8">
+		                    <select class="form-control input-sm" ng-model="baseInfo.logistics">
+		                		<option value>请选择</option>
+		                		<option ng-repeat="logistics in logisticses" value="{{logistics.id}}">{{logistics.name}}</option>
+		                	</select>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">物流单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.logisticsNumber" />
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">创建人</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.created_name"/>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">更新人</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="baseInfo.updated_name"/>
+		                </div>
+		            </div>
+				</div>				
+				<div class="row">
+					<div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">操作类型</label>
+		                <div class="col-sm-8">
+		                	<select class="form-control input-sm" ng-model="baseInfo.warehouseCode">
+		                		<option value>请选择</option>
+		                		<option value="0">出库</option>
+		                		<option value="1">入库</option>
+		                	</select>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-3">
+		                <label class="col-sm-4 control-label input-sm">仓库代码</label>
+		                <div class="col-sm-8">
+		                	<select class="form-control input-sm" ng-model="baseInfo.warehouseCode">
+		                		<option value>请选择</option>
+		                		<option ng-repeat="code in warehouseCodes" value="{{code.id}}">{{code.name}}</option>
+		                	</select>
+		                </div>
+		            </div>
+				</div>
+			</form>
+			<table class="table table-striped">
+	      		<thead>
+					<tr>
+						<th class="col-sm-1">#</th>
+						<th class="col-sm-1">单号</th>
+						<th class="col-sm-1">操作类型</th>
+						<th class="col-sm-1">仓库代码</th>
+						<th class="col-sm-1">物流公司</th>
+						<th class="col-sm-1">物流单号</th>
+						<th class="col-sm-1">物流费用</th>
+						<th class="col-sm-1">订单号</th>
+						<th class="col-sm-1">创建人</th>
+						<th class="col-sm-1">创建时间</th>
+						<th class="col-sm-1">更新人</th>
+						<th class="col-sm-1">更新时间</th>
+					</tr>
+				</thead>
+	      		<tbody>
+	        		<tr ng-repeat="warehouse in warehouses">
+						<td>{{$index + 1}}</td>
+						<td>{{warehouse.number}}</td>
+						<td>{{warehouse.operate}}</td>
+						<td>{{warehouse.warehouseCode}}</td>
+						<td>{{warehouse.logistics}}</td>
+						<td>{{warehouse.logisticsNumber}}</td>
+						<td>{{warehouse.logisticsCost}}</td>
+						<td>{{warehouse.orderNumber}}</td>
+						<td>{{warehouse.created_name}}</td>
+						<td>{{warehouse.created_at}}</td>
+						<td>{{warehouse.updated_name}}</td>
+						<td>{{warehouse.updated_at}}</td>
+	        		</tr>
+	      		</tbody>
+	    	</table>
+		</div>
+    </div>
+</div>

@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-content-header">
+            <div class="col-lg-10">
+                <h4>出入库操作</h4>
+            </div>
+        </div>
+
+        <!--    "一个包含以下字段的对象：
+         Type 出入库类型枚举
+        OrderId 订单号
+        WarehouseCode 仓库代码
+        LogisticCode 物流代码
+        LogisticOrderNumber 物流单号
+        LogisticFee 物流费用
+        Comment 备注
+        Details 一个数组，每个元素包含以下字段：
+          ProductId 产品id
+          OperationCount 操作的数量" -->
+        <div class="">
+            <allure-alerts ng-model="alerts"></allure-alerts>
+            <form method="post" class="form-horizontal bootstrap-validator-form" name="form" ng-submit="submit()" novalidate>
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">操作类型</label>
+                        <div class="col-sm-8">
+                            <label class="input-sm">
+                                <input type="radio" ng-model="baseInfo.type" value="In" ng-disabled="isView" />入库
+                            </label><label class="input-sm">
+                                <input type="radio" ng-model="baseInfo.type" value="Out" ng-disabled="isView" />出库
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <label ng-show="baseInfo.type == 'In'" class="col-sm-4 control-label input-sm">采购单号</label>
+                        <label ng-show="baseInfo.type == 'Out'" class="col-sm-4 control-label input-sm">订单单号</label>
+                        <div class="col-sm-8">
+                            <!--<input ng-if="isView" type="text" disabled class="form-control input-sm" ng-model="baseInfo.orderId" />-->
+                            <input ng-show="false" ng-disabled="isView" type="text" class="form-control input-sm" ng-model="baseInfo.orderId" placeholder="输入订单号后按回车键" ng-enter="queryOrderNumber()"/>
+                            <input ng-show="baseInfo.type == 'Out'" ng-disabled="isView" type="text" class="form-control input-sm" ng-model="baseInfo.orderNO" placeholder="输入订单号后按回车键" ng-enter="queryOrderNumberByNO()" />
+                            <input ng-show="baseInfo.type == 'In'" ng-disabled="isView" type="text" class="form-control input-sm" ng-model="baseInfo.purchaseOrderNumber"   />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">系统单号</label>
+                        <div class="col-sm-8">
+                            <input type="text" disabled class="form-control input-sm" ng-model="baseInfo.id" />
+                        </div>
+                    </div>
+                    <!--<div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">单号*</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" ng-model="baseInfo.number"/>
+                        </div>
+                    </div>-->
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">仓库代码*</label>
+                        <div class="col-sm-8">
+                            <!--<input ng-if="isView" type="text" disabled class="form-control input-sm" ng-model="baseInfo.warehouseName" />-->
+                            <select  class="form-control input-sm" ng-model="baseInfo.warehouseId" ng-disabled="isView">
+                                <option value>请选择</option>
+                                <option ng-repeat="code in warehouseCodes" value="{{code.id}}">{{code.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">物流公司</label>
+                        <div class="col-sm-8">
+                            <!--<input ng-if="isView" type="text" disabled class="form-control input-sm" ng-model="baseInfo.logisticName" />-->
+                            <select  class="form-control input-sm" ng-model="baseInfo.logisticId" ng-disabled="isView">
+                                <option value>请选择</option>
+                                <option ng-repeat="logistics in logisticses" value="{{logistics.id}}">{{logistics.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">物流单号</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" ng-model="baseInfo.logisticNumber" ng-disabled="isView" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">物流费用</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" ng-model="baseInfo.logisticExpense" ng-change="updatelogisticExpense()" ng-disabled="isView && baseInfo.type == 'In'" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">操作人</label>
+                        <div class="col-sm-8">
+                            <input type="text" disabled class="form-control input-sm" ng-model="baseInfo.updateBy" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">操作时间</label>
+                        <div class="col-sm-8">
+                            <!--<input type="text" disabled class="form-control input-sm" ng-model="baseInfo.updateTime"/>-->
+                            <input type="text" disabled class="form-control input-sm"  value="{{baseInfo.updateTime | date:'yyyy-MM-dd HH:mm'}}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-8">
+                        <label class="col-sm-2 control-label input-sm">备注</label>
+                        <div class="col-sm-10" style="padding-left: 10px">
+                            <textarea class="form-control input-sm" rows="6" ng-model="baseInfo.comment" ng-disabled="isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    明细：<input ng-show="baseInfo.type == 'In' && !isView" type="button" value="添加记录" ng-click="addNewItem()" ng-disabled="isView" />
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-1">#</th>
+                            <th class="col-sm-1">货号</th>
+                            <th class="col-sm-1">品名</th>
+                            <th class="col-sm-2">当前可用数量</th>
+                            <th class="col-sm-1">操作数量</th>
+                            <th class="col-sm-1">操作后可用数量</th>
+                            <th class="col-sm-1">品牌</th>
+                            <!--<th class="col-sm-1">大分类</th>-->
+                            <th class="col-sm-2" ng-if="baseInfo.type == 'Out' && !isView">预计发货时间</th>
+                            <th class="col-sm-1" ng-if="!isView">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="warehouse in baseInfo.details">
+                            <td>{{$index + 1}}</td>
+                            <td ng-if="!warehouse.isNew">
+                                {{warehouse.productNumber}}
+                            </td>
+                            <td ng-if="warehouse.isNew">
+                                <input type="text"  class="form-control input-sm" ng-enter="queryNumber()" ng-model="warehouse.productNumber" />
+                            </td>
+                            <td>{{warehouse.productName}}</td>
+                            <td>{{warehouse.originalCount}}</td>
+                            <td><input type="text" class="form-control input-sm" ng-show="!warehouse.isNew" ng-model="warehouse.operationCount" ng-disabled="isView" ng-change="operationCountUpdate(this)" /></td>
+                            <td ng-if="baseInfo.type == 'Out'">{{warehouse.originalCount - warehouse.operationCount}}</td>
+                            <td ng-if="baseInfo.type == 'In'">{{warehouse.originalCount-0 + warehouse.operationCount-0}}</td>
+                            <td>{{warehouse.brandName }}</td>
+                            <!--<td>{{warehouse.largeCatergory}}</td>-->
+                            <td ng-if="baseInfo.type == 'Out' && !isView">{{warehouse.deliveryTime | date:'yyyy-MM-dd'}}</td>
+                            <td ng-if="!isView"><a  href="javascript:void(0)" ng-click="removeItem($index)">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <div class="col-xs-12 col-xs-offset-6">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 col-xs-offset-6">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 col-xs-offset-6">
+                        <input id="submitbtn" type="submit" class="btn btn-primary" value="保存" submitbtn ng-show="!isView" />
+                        <input id="submitbtnExpense" type="button" class="btn btn-primary" value="更新物流费用" ng-click="submitlogisticExpense()" ng-show="isView" />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

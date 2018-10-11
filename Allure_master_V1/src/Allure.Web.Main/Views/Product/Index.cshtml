@@ -1,0 +1,209 @@
+﻿@model MainViewModel<ProductOutput>
+@{
+    var product = Model.BodyModel;   
+}
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/productDetail.css">
+
+<!-- product detail start-->
+<div class="al-prodcut-detail-wrap" ng-controller="AddProductController"  data-product-id="@product.Id" data-product-name="@product.Name" data-product-brand="@product.Brand.Name" data-product-price="@product.Price" data-product-img-url="@product.Images.First().ImageUrl">
+    <div class="al-prodcut-detail-area">
+        <div class="al-prodcut-detail-info">
+            <div class="detail">
+                <div class="product">
+                    <div class="left">
+                        <div class="big">
+                        <div class="small">
+                            @foreach (var img in product.Images.Where(i => !i.IsLargeImage))
+                            { 
+                                <div class="img">
+                                    <span>
+                                        <img src="@(this.AdminSite + img.ImageUrl)"/>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <h3>@product.SubCategory.Parent.Localized.Description</h3>
+                        <p>@product.SubCategory.Localized.Description</p>
+                        <div class="line clearfix">
+                            <div>Brand Name: </div>
+                            <div>@product.Brand.Name</div>
+                        </div>
+                        <div class="line clearfix">
+                            <div>Product Id: </div>
+                            <div>@product.Id</div>
+                        </div>
+                        <div class="line clearfix">
+                            <div>Prodcut name:</div>
+                            <div>@product.Name</div>
+                        </div>
+
+                        <div class="line clearfix">
+                            <div>Made in </div>
+                            <div>@product.Locale.Localized.Name</div>
+                        </div>
+
+                        <div class="line clearfix">
+                            <div>Number:</div>
+                            <div>
+                                <input type="text" maxlength="2" ng-model="product.number" class="form-control number"></div>
+                        </div>
+
+                        <div class="line price clearfix">
+                            <div>Price:</div>
+                            <div>@product.Price</div>
+                        </div>
+
+                        <div class="add-car">
+                            <a href="/order/" target="_blank" class="btn btn-primary buy" ng-click="addShopCar(@product.Id, $event)">Buy</a>
+                            <button href="#" class="btn btn-primary btn-warning add-pro" role="button" ng-click="addShopCar(@product.Id, $event)">Add to car</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="similar">
+                </div>
+            </div>
+
+            <div class="product-introduction">
+                <h3>Description</h3>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">video 1
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="video">
+                                    <video width="500" height="400" src="/allure/video/echo-hereweare.mp4" type="video/mp4" controls="controls"></video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    @product.Localized.Descrption
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    @product.Localized.Descrption
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- product detail end-->
+<script type="text/javascript">
+
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "addProduct",
+                            "location": "js/app/productDetail",
+                            "main": "addProductToShopCar"
+                        },
+                        {
+                            "name": "productDetail",
+                            "location": "js/app/productDetail",
+                            "main": "main"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "productDetail"], function (jQuery, ProductDetail) {
+                            jQuery(document.body).ready(
+                                function () {
+                                    new ProductDetail();
+                                });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

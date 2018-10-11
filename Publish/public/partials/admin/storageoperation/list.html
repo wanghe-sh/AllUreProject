@@ -1,0 +1,148 @@
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="page-content-header">
+	    	<div class="col-lg-10">
+	        	<h4>库存操作履历</h4>
+	        </div>
+        </div>
+         <div class="col-lg-12">
+         	<allure-collapsed ng-model="isCollapsed"></allure-collapsed>
+	    	<form role="form" collapse="!isCollapsed">
+	    	<form role="form">
+		        <div class="row">
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.storageoperationid"/>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">订单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.orderNo" ng-enter="queryOrderNumber()"/>
+		                </div>
+		            </div>
+		            
+		        </div>
+		        
+				<div class="row">
+					<div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">物流公司</label>
+		                <div class="col-sm-8">
+		                    <select class="form-control input-sm" ng-model="search.logisticname">
+		                		<option value>请选择</option>
+		                		<option ng-repeat="logistics in logisticses" value="{{logistics.name}}">{{logistics.name}}</option>
+		                	</select>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">物流单号</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.logisticnumber" />
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">创建人</label>
+		                <div class="col-sm-8">
+		                    <input type="text" class="form-control input-sm" ng-model="search.createby"/>
+		                </div>
+		            </div>
+		            
+				</div>
+		        <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label class="col-sm-4 control-label input-sm">更新人</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" ng-model="search.updateby" />
+                        </div>
+                    </div>
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">操作类型</label>
+		                <div class="col-sm-8">
+		                    <select class="form-control input-sm" ng-model="search.type">
+		                        <option value>请选择</option>
+		                        <option value="1">出库</option>
+		                        <option value="0">入库</option>
+		                    </select>
+		                </div>
+		            </div>
+		            <div class="form-group col-lg-4">
+		                <label class="col-sm-4 control-label input-sm">仓库</label>
+		                <div class="col-sm-8">
+		                    <select class="form-control input-sm" ng-model="search.warehousename">
+		                        <option value>请选择</option>
+		                        <option ng-repeat="code in warehouseCodes" value="{{code.name}}">{{code.name}}</option>
+		                    </select>
+		                </div>
+		            </div>
+		        </div>
+                <div class="row">
+                    <div class="form-group col-lg-8">
+                        <label class="col-sm-2 control-label input-sm">创建时间</label>
+                        <div class="col-sm-10" style="margin-left: -5px">
+                            <alluredatepicker ng-model="search.mincreatetime" datepicker-width="120"></alluredatepicker>
+                            <div class="pull-left" style="width: 16px; text-align: center; vertical-align: middle; line-height: 34px;">-</div>
+                            <alluredatepicker ng-model="search.maxcreatetime" datepicker-width="120"></alluredatepicker>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-8">
+                        <label class="col-sm-2 control-label input-sm">更新时间</label>
+                        <div class="col-sm-10" style="margin-left: -5px">
+                            <alluredatepicker ng-model="search.minupdatetime" datepicker-width="120"></alluredatepicker>
+                            <div class="pull-left" style="width: 16px; text-align: center; vertical-align: middle; line-height: 34px;">-</div>
+                            <alluredatepicker ng-model="search.maxupdatetime" datepicker-width="120"></alluredatepicker>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button ng-click="searchFn()" class="btn btn-default input-sm">检索</button>
+                        </div>
+                    </div>
+                </div>
+			</form>
+		    <table class="table table-striped">
+		        <thead>
+		        <tr>
+		            <th class="col-sm-1">#</th>
+		            <th class="col-sm-1">单号</th>
+		            <th class="col-sm-1">操作类型</th>
+		            <th class="col-sm-1">仓库</th>
+		            <th class="col-sm-1">物流公司</th>
+		            <th class="col-sm-1">物流单号</th>
+		            <th class="col-sm-1">物流费用</th>
+		            <th class="col-sm-1">订单号</th>
+		            <th class="col-sm-1">创建人</th>
+		            <th class="col-sm-1">创建时间</th>
+		            <th class="col-sm-1">更新人</th>
+		            <th class="col-sm-1">更新时间</th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        <tr ng-repeat="warehouse in list">
+		            <td>{{$index + 1}}</td>
+		            <td><a ng-href="#/warehouse/create/{{warehouse.id}}"> {{warehouse.id}}</a></td>
+		            <td>{{warehouse.type == 'In' ? '入库' : '出库'}}</td>
+		            <td>{{warehouse.warehouseName}}</td>
+		            <td>{{warehouse.logisticName}}</td>
+		            <td>{{warehouse.logisticNumber}}</td>
+		            <td>{{warehouse.logisticExpense  | number:2}}</td>
+		            <td>{{warehouse.orderId}}</td>
+		            <td>{{warehouse.createBy}}</td>
+		            <td>{{warehouse.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
+		            <td>{{warehouse.updateBy}}</td>
+		            <td>{{warehouse.updateTime | date:'yyyy-MM-dd HH:mm'}}</td>
+		        </tr>
+		        </tbody>
+		    </table>
+                <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+
+		</div>
+    </div>
+</div>

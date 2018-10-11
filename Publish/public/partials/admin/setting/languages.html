@@ -1,0 +1,53 @@
+﻿<style type="text/css">
+    .form-search .col-xs-4,
+    .form-search .col-xs-8 {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    .form-search .control-label {
+        font-weight: normal;
+    }
+
+    .table tbody tr.active a {
+        color: #428bca;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-content-header col-xs-12">
+            <h4>语言设置</h4>
+        </div>
+        <!-- <form class="form-horizontal row form-search" role="form"> -->
+
+        <!-- </form> -->
+
+        <div class="row" style="margin-bottom: 30px; ">
+            <div class="col-lg-12 text-right" style="padding-right: 25px;">
+                <a type="button" class="btn btn-primary" href="#/languages/create">新增</a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>语言</th>
+                    <th>是否默认</th>
+                    <th>是否启用</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="language in languages" ng-class="$index % 2 === 0 ? 'active': ''">
+                    <td>{{language.code}}</td>
+                    <td>{{language.description}}</td>
+                    <td><input type="checkbox" disabled="disabled" ng-model="language.isDefault" /></td>
+                    <td><input type="checkbox" disabled="disabled" ng-model="language.enabled"/></td>
+                    <td><a ng-href="#/languages/{{language.code}}">明细</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+{
+"totalItems": 20,
+"list": [
+{
+"imgUrl": "/static/imgs/product-1.jpg",
+"name": "hello1",
+"price": 200
+},
+{
+"imgUrl": "/static/imgs/product-2.jpg",
+"name": "hello1",
+"price": 300
+},
+{
+"imgUrl": "/static/imgs/product-3.jpg",
+"name": "hello1",
+"price": 400
+},
+{
+"imgUrl": "/static/imgs/product-4.jpg",
+"name": "hello1",
+"price": 500
+},
+{
+"imgUrl": "/static/imgs/product-5.jpg",
+"name": "hello1",
+"price": 600
+},
+{
+"imgUrl": "/static/imgs/product-6.jpg",
+"name": "hello1",
+"price": 700
+},
+{
+"imgUrl": "/static/imgs/product-7.jpg",
+"name": "hello1",
+"price": 800
+}
+]
+}

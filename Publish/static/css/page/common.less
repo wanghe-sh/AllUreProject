@@ -1,0 +1,130 @@
+@import "../less/variables.less";
+@import "../less/mixins.less";
+
+body{
+    font-size: 12px;
+}
+@al-content-width: 980px;
+.border-radius(@value){
+    border-radius: @value;
+    -webkit-border-radius: @value;
+    -moz-border-radius: @value;
+    -ms-border-radius: @value;
+    -o-border-radius: @value;
+}
+
+@import "header.less";
+@import "footer.less";
+
+.ul-com(){
+	ul{
+		list-style-type: none;
+		padding-left: 10px;
+		li{
+			a{
+				color: #000000;
+			}
+		}
+	}
+}
+.product-hover(){
+	&:hover{
+	    text-decoration: none;
+	    .text{
+	        color: #626366;
+	        .transition(color ease-in 0.5s);
+	    }
+	    .img{
+	        opacity: 1;
+	        .transition(opacity ease-in 0.5s);
+	    }
+	}
+}
+.product-init(@value){
+	.img{
+        opacity: @value;
+        cursor: pointer;
+    }
+    .text{
+        padding: 5px;
+        text-align: center;
+        cursor: pointer;
+        color: #37383A;
+    }
+}
+
+
+.error{
+    display: block;
+    color: #a94442;
+}
+
+.shop-car-list{
+
+    .al-table{
+    	width: 100%;
+    	display: table;
+    	.al-row{
+    		display: table-row;
+    		> div{
+    			padding: 5px;
+    			display: table-cell;
+    			width: 25%;
+    			vertical-align: middle;
+    			border-bottom: 1px dashed #CCCCCC;
+                &.img{
+                    img{
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                &.number{
+                    input{
+                        width: 65px;
+                    }
+                }
+                &.price{
+                    font-weight: bold;
+                }
+                &.delete{
+                    span{
+                        cursor: pointer;
+                        &:hover{
+                            color: red;
+                        }
+                    }
+                }
+    		}
+    		&:first-child{
+    			> div{
+    				font-weight: bold;
+	    		}
+    		}
+    		&:last-child{
+    			> div{
+	    			border-bottom: 0;
+	    		}
+    		}
+    	}
+    }
+    .product-sum{
+        text-align: right;
+        span.title{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        span.total{
+            padding-left: 20px;
+            font-size: 20px;
+            color: #A33030;
+            font-weight:bold;
+        }
+    }
+}
+.shop-car-empty{
+
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

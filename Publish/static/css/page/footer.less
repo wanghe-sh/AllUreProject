@@ -1,0 +1,105 @@
+
+.al-footer-wrap{
+    width: 100%;
+    .al-footer-area{
+        margin: 0 auto;
+        width: @al-content-width;
+        border-top: 1px dashed #000000;
+        .al-footer-info{
+            .clearfix();
+            padding: 20px;
+            .under-inline{
+                border-bottom: 1px dashed #000000;
+            }
+            .box{
+                float: left;
+                a{
+                    color: #000000;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                .title{
+                        font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+                        font-size: 11px;
+                        font-weight: 300;
+                    }
+                &.one{
+                    width: 200px;
+                    ul{
+                        margin: 0;
+                        padding-left: 0;
+                        margin-top: 10px;
+                        list-style-type: none;
+                        li{
+                            font-size: 10px;
+                            font-weight: 300;
+                        }
+                    }
+                }
+                &.two{
+                    width: 250px;
+                    .btn{
+                        position: relative;
+                    }
+                    input{
+                        padding: 5px;
+                        border: none;
+                        .box-shadow(none);
+                        border-bottom: 1px solid #000000;
+                        color: rgba(0,0,0,0.5);
+                        font-style: italic;
+                        &.form-control{
+                            .border-radius(0);
+                        }
+                        &:last-child{
+                            color: #FFFFFF;
+                            position: absolute;
+                            top: 10px;
+                            right: -15px;
+                            background: #000000;
+                            border: none;
+                        }
+                    }
+                }
+                &.three{
+                    width: 200px;
+                    ul{
+                        margin-top: 20px;
+                        list-style-type: none;
+                        padding-left: 0;
+                        li{
+                            float: left;
+                            margin-left: 5px;
+                            width: 20px;
+                            height: 20px;
+                            &:first-child{
+                                margin-left: 0;
+                            }
+                            a{
+                                display: inline-block;
+                                width: 20px;
+                                height: 20px;
+                                background: url('/allure/imgs/site_list.png') no-repeat;
+                                &.o1{
+                                    background-position: 0 -38px;
+                                }
+                                &.o2{
+                                    background-position: 0 -18px;
+                                }
+                                &.o3{
+                                    background-position: 0 -98px;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.four{
+                    width: 200px;
+                    font-size: 10px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}

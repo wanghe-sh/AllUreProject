@@ -1,0 +1,223 @@
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/register.css">
+
+<!-- register start-->
+	<div class="al-register-wrap">
+		<div class="al-register-area">
+			<div class="al-register-info">
+                <div class="al-register-text">
+                    <h3>{{ 'userRegister' | translate }}</h3>
+                    <form class="form-horizontal register-form" action="/user/register" method="post" name="registerForm">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">{{ 'email' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="email" name="email" class="form-control" id="email" placeholder="{{ 'email' | translate }}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="firstName" class="col-sm-3 control-label">{{ 'firstName' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="firstName" class="form-control" id="firstName" placeholder="{{ 'firstName' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" class="col-sm-3 control-label">{{ 'lastName' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="lastName" class="form-control" id="lastName" placeholder="{{ 'lastName' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender" class="col-sm-3 control-label">{{ 'gender' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" name="gender" value="Female">{{ 'Female' | translate }}</label>
+                            <label class="radio-inline">
+                              <input type="radio" name="gender" value="Male">{{ 'Male' | translate }}
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="telephone" class="col-sm-3 control-label">{{ 'telephone' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="telephone" class="form-control" id="telephone" placeholder="{{ 'telephone' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-3 control-label">{{ 'mobile' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="mobile" class="form-control" id="mobile" placeholder="{{ 'mobile' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plainTextPassword" class="col-sm-3 control-label">{{ 'password' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="password" name="plainTextPassword" class="form-control" id="plainTextPassword" placeholder="{{ 'password' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plainTextConfirmPassword" class="col-sm-3 control-label">{{ 'confirmpassword' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="password" name="plainTextConfirmPassword" class="form-control" id="plainTextConfirmPassword" placeholder="{{ 'confirmpassword' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">{{ 'address' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="address" class="form-control" id="address" placeholder="{{ 'address' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postCode" class="col-sm-3 control-label">{{ 'postCode' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="postCode" class="form-control" id="postCode" placeholder="{{ 'postCode' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company" class="col-sm-3 control-label">{{ 'company' | translate }}:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="company" class="form-control" id="company" placeholder="{{ 'company' | translate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="agreeProtocol">
+                                    <span class="text">{{ 'agreeProtocol' | translate }}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">{{ 'Signin' | translate }}</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+			</div>
+		</div>
+	</div>
+<!-- register end-->
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "validate",
+                            "location": "js/plugin/validate",
+                            "main": "jquery-validate"
+                        },
+                        {
+                            "name": "register",
+                            "location": "js/app/register",
+                            "main": "main"
+                        },
+                        {
+                            "name": "angular-translate",
+                            "location": "js/lib/angularjs-translate",
+                            "main": "angular-translate"
+                        },
+                        {
+                            "name": "angular-translate-loader-static-files",
+                            "location": "js/lib/angularjs-translate-loader-static-files",
+                            "main": "angular-translate-loader-static-files"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        },
+                        "validate": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate": {
+                            deps: ["angular"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angular-translate-loader-static-files": {
+                            deps: ["angular-translate"],
+                            init: function ($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "register"], function (jQuery, Register) {
+                            jQuery(document.body).ready(
+                                function () {
+                                    new Register();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

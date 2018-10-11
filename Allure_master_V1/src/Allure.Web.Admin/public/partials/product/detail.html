@@ -1,0 +1,225 @@
+<link href="/public/lib/webuploader_fex/dist/webuploader.css" rel="stylesheet" />
+<style type="text/css">
+	.client-page{
+        width: 960px;
+    }
+    #main-image-container{
+    	text-align: center;
+    }
+    #main-image-container img{
+    	max-height: 400px;
+    	max-width: 100%;
+    }
+    .image-list{
+        margin-top: 10px;
+        text-align: center;
+    }
+    .wrap-imageupload li{
+        margin: 5px 0;
+        list-style: none;
+    }
+    .wrap-imageupload .wrap-upload{
+        padding: 10px 0;
+        height: 40px;
+    }
+    .wrap-imageupload .wrap-upload .webuploader-pick{
+        padding: 6px 12px;
+    }
+    #imageList,#imageList .row{
+        padding: 0;
+        margin: 6px 0;
+    }
+    #imageList .row .action,
+    #imageList .row .image-name,
+    #imageList .row .image-wrap{
+        display: inline-block;
+    }
+    #imageList .row .image-name,
+    #imageList .row .image-wrap{
+        word-wrap:break-word;
+        width:250px;
+        vertical-align: middle;
+    }
+    #imageList .row .image-wrap,
+    #imageList .row .action{
+        height: 50px;
+        line-height: 50px;
+    }
+    #imageList .row .action{
+        width:82px;
+        text-align: right;
+    }
+</style>
+<div class="col-lg-12">
+	<div class="page-content-header">
+    	<div class="col-lg-10">
+        	<h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="client-page">
+        <div class="col-xs-12">
+            <allure-alerts ng-model="alerts"></allure-alerts>
+        </div>
+        <div class="col-xs-5">
+        	<div id="product-images" class="text-center">
+                <div style="width:350px;">
+        			<div id="main-image-container" ng-if="product.Images.length > 0">
+                        <img id="multizoom" alt="zoomable" title="" ng-src="{{product.Images[0].ThumbnailUrl}}" />
+        			</div>
+                    <div class="image-list multizoom thumbs" ng-if="product.Images.length > 0">
+                        <a ng-repeat="image in product.Images" ng-href="{{image.ThumbnailUrl}}" data-large="{{image.ImageUrl}}">
+                            <img ng-src="{{image.ThumbnailUrl}}" style="max-width:50px"/>
+                        </a>
+                    </div>
+                    <div ng-if="product.Images.length == 0">
+                        <img holder-src="holder.js/350x350/text:350 x auto" imgHolder />
+                    </div>
+                    <div>
+                        <ul id="imageList">
+                            <li class="row" ng-repeat="image in product.Images">
+                                <div class="text-left image-wrap">
+                                    <img ng-src="{{image.ThumbnailUrl}}" style="max-width:50px" />
+                                </div>
+                                <div class="pull-right action">
+                                    <input type="button" class="btn" ng-model="image" value="删除" ng-click="removeExistImage($index)"/>
+                                </div>
+                            </li>
+                            <li class="row"  ng-repeat="file in files">
+                                <div class="text-left image-name">
+                                    已选择：{{file.name}}
+                                </div>
+                                <div class="pull-right action">
+                                    <input type="button" class="btn" ng-model="image" value="删除" ng-click="removeImage($index)"/>
+                                </div>
+                            </li>
+                            <li class="row pull-right">
+                                <update-input-image ng-model="files" ng-alerts="alerts"></update-input-image>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <input type="button" class="btn btn-default" value="编辑" imageupload options="images" style="width:100%;margin-top:10px"/> -->
+    		</div>
+            <div id="product-vedio" class="text-center" style="margin-top:65px">
+                <div id="main-image-container" ng-if="false">
+                    <iframe height=350 src="{{product.VideoUrl}}" frameborder=0 allowfullscreen></iframe>
+                </div>
+                <img holder-src="holder.js/350x350/text:vedio" imgHolder />
+                <div class="form-group" style="margin-top:10px;">
+                    <label class="col-xs-4 control-label input-sm">视频文件名</label>
+                    <div class="col-xs-8">
+                        <input class="form-control input-sm" ng-model="product.VideoUrl"/>
+                    </div>
+                </div>
+                <!-- <div ng-if="true">
+                    <img holder-src="holder.js/350x350/text:vedio" imgHolder />
+                </div>
+                <input type="button" class="btn btn-default" value="编辑" vedioupload url="product.VideoUrl" style="width:100%;margin-top:10px"/> -->
+            </div>
+        </div>
+		<div class="col-xs-5" id="product-details">
+			<form class="form-horizontal row form-search" role="form">
+                <div class="form-group">
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="checkbox" ng-value="true" ng-checked="product.RecommendedS" ng-model="product.RecommendedS" name="recommandPictureRecommendedS">
+                        <label class="control-label input-sm">首页推荐小图</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="checkbox" ng-value="true" ng-checked="product.RecommendedL" ng-model="product.RecommendedL" name="recommandPictureRecommendedL">
+                        <label class="control-label input-sm">首页推荐大图</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">大分类</label>
+                    <div class="col-xs-8">
+                        <select class="form-control input-sm" ng-model="product.largeCatergory">
+                            <option value="">请选择</option>
+                            <option ng-repeat="catergory in largeCatergories" value="{{catergory.Id}}">{{catergory.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">小分类</label>
+                    <div class="col-xs-8">
+                        <select class="form-control input-sm" ng-model="product.SubCategoryId">
+                        	<option value="">请选择</option>
+                        	<option ng-repeat="catergory in smallCatergories" value="{{catergory.Id}}" ng-selected="product.SubCategoryId == catergory.Id">{{catergory.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">品牌</label>
+                    <div class="col-xs-8">
+                         <select class="form-control input-sm" ng-model="product.BrandId">
+                            <option value="">请选择</option>
+                            <option ng-repeat="brand in brands" value="{{brand.Id}}">{{brand.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">货号</label>
+                    <div class="col-xs-8">
+                        <input class="form-control input-sm" ng-model="product.Number"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">品名</label>
+                    <div class="col-xs-8">
+                        <input class="form-control input-sm" ng-model="product.Name"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">价格</label>
+                    <div class="col-xs-8">
+                        <input class="form-control input-sm" ng-model="product.Price"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">排序位</label>
+                    <div class="col-xs-8">
+                        <input class="form-control input-sm" ng-model="product.DisplayOrder"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">有效时间</label>
+                    <div class="col-xs-8">
+                        <alluredatepicker ng-model="product.Start" datepicker-width="120"></alluredatepicker>
+                        <div class="pull-left" style="width: 16px;text-align: center;vertical-align: middle;line-height: 34px;">-</div>
+                        <alluredatepicker ng-model="product.End" datepicker-width="120"></alluredatepicker>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">产地</label>
+                    <div class="col-xs-8">
+                        <select class="form-control input-sm" ng-model="product.LocaleId">
+                        	<option value="">请选择</option>
+                        	<option ng-repeat="locale in locales" value="{{locale.Id}}">{{locale.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label input-sm">状态</label>
+                    <div class="col-xs-8">
+                        <select class="form-control input-sm" ng-model="product.State">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-xs-4 control-label input-sm">描述</label>
+                    </div>
+                    <div class="row" style="margin-bottom:10px" ng-repeat="item in product.Localized">
+                        <label class="col-xs-4 control-label input-sm">{{item.Title}}</label>
+                        <div class="col-xs-8">
+                            <textarea class="form-control" rows="8" ng-model="item.Descrption"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <input id="submitbtn" type="button" class="btn btn-default pull-right" value="保存" style="margin-top:10px" ng-click="save()" submitbtn/>
+            </form>
+		</div>
+    </div>
+</div>

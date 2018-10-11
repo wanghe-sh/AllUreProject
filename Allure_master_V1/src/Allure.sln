@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F29B9E4A-587F-4017-98E5-2584A4354A86}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Data", "Allure.Data\Allure.Data.csproj", "{ADF94702-0C47-4CBF-8574-647184EF8F9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Common", "Allure.Common\Allure.Common.csproj", "{550618E8-826F-49D9-8A0E-4C117E38226A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Web", "Allure.Web\Allure.Web.csproj", "{4670F6D1-D1EE-4C1F-A5FD-F72576822F2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Core", "Allure.Core\Allure.Core.csproj", "{53D1C26E-3D4C-4ECE-8BFF-30AF1B39F701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Web.Admin", "Allure.Web.Admin\Allure.Web.Admin.csproj", "{1C10CE5B-541D-488B-87D0-7E321920D301}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allure.Web.Main", "Allure.Web.Main\Allure.Web.Main.csproj", "{78221412-C1F7-447A-8AB1-28F227164FED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADF94702-0C47-4CBF-8574-647184EF8F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF94702-0C47-4CBF-8574-647184EF8F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF94702-0C47-4CBF-8574-647184EF8F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF94702-0C47-4CBF-8574-647184EF8F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550618E8-826F-49D9-8A0E-4C117E38226A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550618E8-826F-49D9-8A0E-4C117E38226A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550618E8-826F-49D9-8A0E-4C117E38226A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550618E8-826F-49D9-8A0E-4C117E38226A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4670F6D1-D1EE-4C1F-A5FD-F72576822F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4670F6D1-D1EE-4C1F-A5FD-F72576822F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4670F6D1-D1EE-4C1F-A5FD-F72576822F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4670F6D1-D1EE-4C1F-A5FD-F72576822F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53D1C26E-3D4C-4ECE-8BFF-30AF1B39F701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53D1C26E-3D4C-4ECE-8BFF-30AF1B39F701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53D1C26E-3D4C-4ECE-8BFF-30AF1B39F701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53D1C26E-3D4C-4ECE-8BFF-30AF1B39F701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C10CE5B-541D-488B-87D0-7E321920D301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C10CE5B-541D-488B-87D0-7E321920D301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C10CE5B-541D-488B-87D0-7E321920D301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C10CE5B-541D-488B-87D0-7E321920D301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78221412-C1F7-447A-8AB1-28F227164FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78221412-C1F7-447A-8AB1-28F227164FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78221412-C1F7-447A-8AB1-28F227164FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78221412-C1F7-447A-8AB1-28F227164FED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

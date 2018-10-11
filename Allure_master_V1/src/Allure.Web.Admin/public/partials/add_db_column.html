@@ -1,0 +1,29 @@
+<div class="wrap-imageupload">
+	<div class="modal-header">
+	    <h3 class="modal-title">字段名：</h3>
+	</div>
+	<div class="modal-body">
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+		<div class="form-horizontal row">
+			<div class="form-group">
+	            <label class="col-sm-2 control-label input-sm">字段值:</label>
+	            <div class="col-sm-8">
+	                <input class="form-control input-sm" ng-model="column.id"/>
+	            </div>
+	        </div>
+	        <div class="row">
+	        	<div class="col-sm-10 col-sm-offset-1"><h5>字段描述:</h5></div>
+	        </div>
+	        <div class="form-group" ng-repeat="language in languages">
+	            <label class="col-sm-2 control-label input-sm">{{language.Description}}</label>
+	            <div class="col-sm-8">
+	                <input class="form-control input-sm" ng-model="column.languages[language.Code]"/>
+	            </div>
+	        </div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">确定</button>
+	    <button class="btn btn-default" ng-click="cancel()">取消</button>
+	</div>
+</div>

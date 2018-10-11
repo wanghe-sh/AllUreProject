@@ -1,0 +1,120 @@
+@model MainViewModel<OrderOutput[]>
+@{
+    var orders = this.Model.BodyModel;
+}
+<link type="text/less" rel="stylesheet" href="/static/css/page/orderList.css">
+<div class="al-order-list-wrap">
+    <div class="al-order-list-area">
+        <div class="al-order-list-info">
+
+            <div class="order-list-tabel-wrap">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Summary</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Create Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in orders)
+                        { 
+                            <tr>
+                                <td><a href="@Url.Action(MVC.Order.ActionNames.Detail, new { id = order.Id })" target="_blank">@order.Id</a></td>
+                                <td><a href="@Url.Action(MVC.Order.ActionNames.Detail, new { id = order.Id })" target="_blank">@order.Summary</a></td>
+                                <td>@order.RealCharge</td>
+                                <td>@order.Status</td>
+                                <td>@order.CreateTime</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "orderList",
+                            "location": "js/app/order/list",
+                            "main": "main"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "orderList"], function (jQuery, orderList) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new orderList();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

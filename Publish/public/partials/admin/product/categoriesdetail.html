@@ -1,0 +1,80 @@
+<style type="text/css">
+    .client-row{
+        width: 782px;
+        margin-bottom: 30px;
+    }
+    .description .content{
+        min-height: 100px;
+    }
+    .form-group{
+        margin-top:15px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="page-content-header row">
+	    	<div class="col-lg-10">
+	        	<h4>子分类显示</h4>
+	        </div>
+        </div>
+        <div class="client-page">
+            <div class="client-row" ng-repeat="category in categories" style="border:1px #ccc solid">
+                <div class="row">
+                    <h4 class="col-lg-12" style="padding-left:25px;">主分类：</h4>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" >
+                        <ul class="row">
+                            <li ng-repeat="language in category.localizations" class="form-horizontal">
+                                <div class="form-group">
+
+                                    <h5>{{getLanguageName(language.languageCode)}}</h5>
+                                    <label class="col-sm-2 control-label" style="padding-top: 0">名字:</label>
+                                    <div class="col-sm-10">{{language.name}}</div>
+                                    <label class="col-sm-2 control-label" style="padding-top: 0">描述:</label>
+                                    <div class="col-sm-10">{{language.description}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 30px">
+                    <div class="col-lg-12 text-right" style="padding-right: 25px;">
+                        <a type="button" class="btn btn-primary" href="#/category/sub/create/{{category.id}}">添加子分类</a>
+                    </div>
+                </div>
+               
+                    <h4 class="col-lg-12 row" ng-show="category.children && category.children.length > 0" style="padding-left: 25px;">子分类：</h4>
+                    <div class="sub-category" ng-repeat="sub in category.children">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <img holder-src="holder.js/780x270" ng-show="!sub.image" imgHolder />
+                                <img src="{{sub.image.url}}" ng-show="sub.image.url" style="width: 780px" />
+                            </div>
+                            <div class="col-lg-12">
+                                <ul class="row">
+                                    <li ng-repeat="language in sub.localizations" class="form-horizontal">
+                                        <h5>{{getLanguageName(language.languageCode)}}</h5>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" style="padding-top: 0">名字:</label>
+                                            <div class="col-sm-10">{{language.name}}</div>
+                                            <label class="col-sm-2 control-label" style="padding-top: 0">描述:</label>
+                                            <div class="col-sm-10">{{language.description}}</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 30px">
+                            <div class="col-lg-12 text-right" style="padding-right: 25px;">
+                                <a type="button" class="btn btn-default" href="#/category/sub/edit/{{category.id}}/{{sub.id}}/">修改</a>
+                                <input type="button" class="btn btn-danger" value="删除" category-delete ng-model="sub" ng-others="category.Children" />
+                            </div>
+                        </div>
+                    </div>
+               
+                    
+                </div>
+        </div>
+    </div>
+</div>

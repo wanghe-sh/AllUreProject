@@ -1,0 +1,163 @@
+<style type="text/css">
+    .client-page{
+        width: 810px;
+    }
+    .description .content{
+        min-height: 100px;
+    }
+    .pagi-nav .count{
+        float: right;
+        margin-right: 10px;
+    }
+    .pagi-nav .pagination-wrapper{
+        float: right;
+    }
+    .pagi-nav .pagination-wrapper .pagination{
+        margin: 0;
+    }
+    .sort-wrap{
+        margin-top: 20px;
+    }
+    .sort-wrap .form-group{
+        margin-bottom: 10px;
+    }
+    .products{
+        border-top:1px solid #000;
+        list-style: none;
+        padding:20px 0 0 0;
+        font-size: 0;
+    }
+    .products .product-wrapper{
+        float: left;
+        margin: 0 10px 30px 0;
+        min-height: 270px;
+        padding: 0;
+        width: 253px;
+        display: inline-block;
+    }
+    .products .product-wrapper .wrap-image{
+        width: 250px;
+        height: 250px;
+    }
+    .products .product-wrapper img{
+        margin-bottom: 10px;
+        max-width: 250px;
+        max-height: 250px;
+        width: auto\9;
+        height: auto;
+        vertical-align: middle;
+    }
+    .products .product-wrapper .product{
+        font-size: 12px;
+    }
+    .marginTop{
+        margin-top: 15px;
+    }
+    .form-search .col-xs-4,
+    .form-search .col-xs-8,
+    .form-search .col-xs-10{
+        padding-left: 0;
+        padding-right: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+    	<div class="page-content-header">
+	    	<div class="col-xs-10">
+	        	<h4>商品列表</h4>
+	        </div>
+        </div>
+        <div class="client-page">
+            <div class="col-xs-12">
+                <allure-collapsed ng-model="isCollapsed"></allure-collapsed>
+                <form role="form" collapse="!isCollapsed" class="form-horizontal row form-search">
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label class="col-xs-4 control-label input-sm">货号</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control input-sm" ng-model="search.Number" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="col-xs-4 control-label input-sm">品名</label>
+                            <div class="col-xs-8">
+                              <input type="text" class="form-control input-sm" ng-model="search.Name"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label class="col-xs-4 control-label input-sm">品牌</label>
+                            <div class="col-xs-8">
+                                <select class="form-control input-sm" ng-model="search.BrandId">
+                                    <option value="">请选择</option>
+                                    <option ng-repeat="brand in brands" value="{{brand.Id}}">{{brand.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-4">
+                            <label class="col-xs-4 control-label input-sm">产地</label>
+                            <div class="col-xs-8">
+                              <select class="form-control input-sm" ng-model="search.Locale">
+                                    <option value="">请选择</option>
+                                    <option ng-repeat="locale in locales" value="{{locale.Id}}">{{locale.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-8">
+                            <label class="col-xs-2 control-label input-sm">价格</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control input-sm" style="width:58px;" ng-model="search.MinPrice"/>
+                                -
+                                <input type="text" class="form-control input-sm" style="width:59px;" ng-model="search.MaxPrice"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 form-group">
+                            <div class="col-xs-offset-4 col-xs-8">
+                                <button class="btn btn-default input-sm" ng-click="searchFn()">检索</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row sort-wrap">
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-4">
+                            <div class="col-xs-8"><!-- Price DESC, Name ASC -->
+                                <select class="form-control input-sm" ng-model="search.OrderBy" ng-change="orderSearch()">
+                                    <option value="Id DESC">排序</option>
+                                    <option value="Price DESC">按价格降序</option>
+                                    <option value="Price">按价格升序</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="products.length === 0">未查询到任何数据</div>
+                <ul class="row products" ng-show="products.length > 0">
+                    <li class="product-wrapper" ng-repeat="product in products">
+                        <div class="product">
+                            <div class="wrap-image">
+                                <a href="/#/product/{{product.Id}}">
+                                    <img ng-src="{{product.Images[0].ImageUrl}}" />
+                                </a>
+                            </div>
+                            <div class="vendor">
+                                货号：{{product.Number}}
+                            </div>
+                            <div class="vendor">
+                                品名：{{product.Name}}
+                            </div>
+                            <div class="price">
+                                价格：{{product.Price}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+            </div>
+        </div>
+    </div>
+</div>
+

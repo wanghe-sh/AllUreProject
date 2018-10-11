@@ -1,0 +1,22 @@
+<div class="wrap-imageupload">
+	<div class="modal-header">
+	    <h3 class="modal-title">上传图片</h3>
+	</div>
+	<div class="modal-body">
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+	    <ul>
+	    	<li ng-repeat="image in images">
+	    		<img src="{{image.tmb}}" />
+	    		<input type="button" class="btn pull-right" value="删除" ng-click="remove($index)"/>
+	    	</li>
+	    	<li class="wrap-upload" ng-init="func()">
+	    		<div id="filePicker" class="pull-right">添加</div>
+	    	</li>
+	    </ul>
+	    
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">确定</button>
+	    <button class="btn btn-default" ng-click="cancel()">取消</button>
+	</div>
+</div>

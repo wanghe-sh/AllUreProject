@@ -1,0 +1,31 @@
+{
+  "name": "Allure.Admin",
+  "version": "0.0.0",
+  "homepage": "https://github.com/FDUdannychen/Allure",
+  "authors": [
+    "miser <udmiser@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.14",
+    "jquery": "~2.1.1",
+    "jqueryui": "~1.11.0",
+    "bootstrap": "~3.2.0",
+    "angular": "~1.2.21",
+    "lodash": "~2.4.1",
+    "requirejs-plugins": "~1.0.2",
+    "ui-bootstrap": "~0.11.0",
+    "checklist-model": "~0.1.3",
+    "holderjs": "~2.4.0",
+    "webuploader_fex": "~0.1.5",
+    "angular-route": "~1.2.24",
+    "angular-resource": "~1.2.24"
+  }
+}

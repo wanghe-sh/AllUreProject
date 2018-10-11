@@ -1,0 +1,133 @@
+@model MainViewModel
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/checkoutList.css">
+
+<!-- checkout list start-->
+    <div class="al-checkout-wrap" ng-controller="ShopCarController">
+        <div class="al-checkout-area">
+            <div class="al-checkout-info">
+                <h6><span class="glyphicon glyphicon-th-list"></span>Checkout List</h6>
+                <div  ng-cloak class="shop-car-list" ng:show="productType.shopCars.length > 0">
+
+                    <div class="al-table">
+                        <div class="al-row">
+                            <div class="img">
+                                Product
+                            </div>
+                            <div class="number">
+                                Number
+                            </div>
+                            <div class="price">
+                                <span>Price</span>
+                            </div>
+                            <div class="delete"></div>
+                        </div>
+                        <div class="al-row" ng:repeat="product in productType.shopCars">
+                            <div class="img">
+                                <img src="{{product.imgUrl}}" width="100" height="100"/>
+                            </div>
+                            <div class="number">
+                                <input type="text" ng-keyup="validate(product.number)" ng-model="product.number" class="form-control" value="{{product.number}}" />
+                            </div>
+                            <div class="price">
+                                <span>{{product.price * product.number}}</span>
+                            </div>
+                            <div class="delete">
+                                <span class="glyphicon glyphicon-remove" ng-click="delete($index)"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-sum">
+                        <span class="title">Total Money:</span><span class="total">${{productType.sum()}}</span>
+                    </div>
+                    <div class="checkout-list-btn-area">
+                        <a href="/order/submit/" target="_blank" class="btn btn-primary" role="button">Check out</a>
+                    </div>
+                </div>
+                <div  ng-cloak class="shop-car-empty" ng:show="productType.shopCars.length === 0">
+                    <div class="alert alert-info" role="alert">
+                        Your shopcars is empty, please go to product list to order.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- checkout list end-->
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "checkoutList",
+                            "location": "js/app/checkoutList",
+                            "main": "main"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "checkoutList"], function (jQuery, CheckoutList) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new CheckoutList();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

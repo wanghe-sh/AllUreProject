@@ -1,0 +1,144 @@
+<div class="col-lg-12">
+	<div class="page-content-header">
+    	<div class="col-lg-10">
+        	<h4>出入库操</h4>
+        </div>
+    </div>
+
+<!--    "一个包含以下字段的对象：
+ Type 出入库类型枚举
+OrderId 订单号
+WarehouseCode 仓库代码
+LogisticCode 物流代码
+LogisticOrderNumber 物流单号
+LogisticFee 物流费用
+Comment 备注
+Details 一个数组，每个元素包含以下字段：
+  ProductId 产品id
+  OperationCount 操作的数量" -->
+    <div class="">
+    	<form role="form">
+    		<div class="row">
+    			<div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">操作类型</label>
+	                <div class="col-sm-8">
+	                    <label class="input-sm">
+						    <input type="radio" ng-model="baseInfo.operate" value="0"/>入库
+						</label><label class="input-sm">
+						    <input type="radio"  ng-model="baseInfo.operate" value="1"/>出库
+						</label>
+	                </div>
+	            </div>
+				<div class="form-group col-lg-3">
+					<label class="col-sm-4 control-label input-sm">定单号</label>
+	                <div class="col-sm-8">
+	                    <input type="text" class="form-control input-sm" ng-model="baseInfo.OrderId" ng-enter="queryOrderNumber()"/>
+	                </div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">系统单号</label>
+	                <div class="col-sm-8">
+	                    <input type="text" disabled class="form-control input-sm" ng-model="baseInfo.systemNumber" />
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">单号*</label>
+	                <div class="col-sm-8">
+	                    <input type="text" class="form-control input-sm" ng-model="baseInfo.number" />
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">仓库代码*</label>
+	                <div class="col-sm-8">
+	                	<select class="form-control input-sm" ng-model="baseInfo.warehouseCode">
+	                		<option value>请选择</option>
+	                		<option ng-repeat="code in warehouseCodes" value="{{code.id}}">{{code.name}}</option>
+	                	</select>
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">操作人</label>
+	                <div class="col-sm-8">
+	                    <input type="text" disabled class="form-control input-sm" ng-model="baseInfo.operateName"/>
+	                </div>
+	            </div>
+			</div>				
+			<div class="row">
+				<div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">物流公司</label>
+	                <div class="col-sm-8">
+	                    <select class="form-control input-sm" ng-model="baseInfo.logistics">
+	                		<option value>请选择</option>
+	                		<option ng-repeat="logistics in logisticses" value="{{logistics.id}}">{{logistics.name}}</option>
+	                	</select>
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">物流单号</label>
+	                <div class="col-sm-8">
+	                    <input type="text" class="form-control input-sm" ng-model="baseInfo.logisticsNumber" />
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">物流费用</label>
+	                <div class="col-sm-8">
+	                    <input type="text" class="form-control input-sm"  ng-model="baseInfo.logisticsNumber" ng-model="baseInfo.logisticsCost"/>
+	                </div>
+	            </div>
+	            <div class="form-group col-lg-3">
+	                <label class="col-sm-4 control-label input-sm">操作时间</label>
+	                <div class="col-sm-8">
+	                    <input type="text" disabled class="form-control input-sm" ng-model="baseInfo.time" />
+	                </div>
+	            </div>
+			</div>
+			<div class="row">
+				<div class="form-group col-lg-6">
+	                <label class="col-sm-2 control-label input-sm">备注</label>
+	                <div class="col-sm-10" style="padding-left:10px">
+	                    <textarea class="form-control input-sm" rows="6" ng-model="baseInfo.remark"></textarea>
+	                </div>
+	            </div>
+			</div>
+		</form>
+		<div>明细：<input ng-show="baseInfo.operate == 1" type="button" value="添加记录" ng-click="addNewItem()"/></div>
+		<table class="table table-striped">
+      		<thead>
+				<tr>
+					<th class="col-sm-1">#</th>
+					<th class="col-sm-1">货号</th>
+					<th class="col-sm-1">品名</th>
+					<th class="col-sm-2">当前可用数量</th>
+					<th class="col-sm-1">操作数量</th>
+					<th class="col-sm-2">操作后可用数量</th>
+					<th class="col-sm-1">品牌</th>
+					<th class="col-sm-1">大分类</th>
+					<th class="col-sm-1">小分类</th>
+					<th class="col-sm-1">操作</th>
+				</tr>
+			</thead>
+      		<tbody>
+        		<tr ng-repeat="warehouse in warehouses">
+					<td>{{$index + 1}}</td>
+					<td ng-if="!warehouse.isNew">
+						{{warehouse.number}}
+					</td>
+					<td ng-if="warehouse.isNew">
+						<input type="text" class="form-control input-sm" ng-enter="queryNumber()" ng-model="warehouse.number"/>
+					</td>
+					<td>{{warehouse.name}}</td>
+					<td>{{warehouse.count}}</td>
+					<td><input type="text" class="form-control input-sm" ng-show="!warehouse.isNew" ng-model="warehouse.useCount"/></td>
+					<td ng-if="!warehouse.isNew">{{warehouse.count - warehouse.useCount}}</td>
+					<td ng-if="warehouse.isNew"></td>
+					<td>{{warehouse.trademark}}</td>
+					<td>{{warehouse.largeCatergory}}</td>
+					<td>{{warehouse.smallCatergory}}</td>
+					<td><a href="javascript:void(0)" ng-click="removeItem($index)">删除</a></td>
+        		</tr>
+      		</tbody>
+    	</table>
+    </div>
+</div>

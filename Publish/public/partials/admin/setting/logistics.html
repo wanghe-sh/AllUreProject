@@ -1,0 +1,47 @@
+﻿<style type="text/css">
+    .form-search .col-xs-4,
+    .form-search .col-xs-8 {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    .form-search .control-label {
+        font-weight: normal;
+    }
+
+    .table tbody tr.active a {
+        color: #428bca;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-content-header col-xs-12">
+            <h4>物流设置</h4>
+        </div>
+        <!-- <form class="form-horizontal row form-search" role="form"> -->
+
+        <!-- </form> -->
+
+        <div class="row" style="margin-bottom: 30px; ">
+            <div class="col-lg-12 text-right" style="padding-right: 25px;">
+                <a type="button" class="btn btn-primary" href="#/logistics/create">新增</a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>名字</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="logistics in logisticses" ng-class="$index % 2 === 0 ? 'active': ''">
+                    <td>{{logistics.name}}</td>
+                    
+                    <td><a ng-href="#/logistics/{{logistics.id}}">明细</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+    </div>
+</div>

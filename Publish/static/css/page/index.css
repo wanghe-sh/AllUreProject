@@ -1,0 +1,567 @@
+body {
+  font-size: 12px;
+}
+.al-nav-wrap {
+  width: 100%;
+  background: #000000;
+}
+.al-nav-wrap .al-nav-area {
+  margin: 0 auto;
+  width: 980px;
+  min-height: 26px;
+}
+.al-nav-wrap .al-nav-area .al-nav-info {
+  position: absolute;
+  width: inherit;
+}
+.al-nav-wrap .al-nav-area .al-nav-info .navbar {
+  margin: 0 auto;
+  width: inherit;
+  height: 26px !important;
+  min-height: 26px !important;
+  background: #000000;
+  border: 0;
+}
+.al-nav-wrap .al-nav-area .al-nav-info .navbar ul li {
+  border-right: 1px dashed #CCCCCC;
+}
+.al-nav-wrap .al-nav-area .al-nav-info .navbar ul li a {
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #CCCCCC;
+}
+.al-nav-wrap .al-nav-area .al-nav-info .navbar ul li a:hover {
+  color: #FFFFFF;
+}
+.al-logo-wrap {
+  margin-top: 20px;
+  width: 100%;
+}
+.al-logo-wrap .al-logo-area {
+  margin: 0 auto;
+  width: 980px;
+}
+.al-logo-wrap .al-logo-area .al-logo-info {
+  padding: 20px 0;
+  text-align: center;
+}
+.al-menu-wrap {
+  width: 100%;
+}
+.al-menu-wrap .al-menu-area {
+  margin: 0 auto;
+  width: 980px;
+  border-bottom: 0px dashed #000000;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar {
+  background: #FFFFFF;
+  border: none;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul.menu-ul-list {
+  width: 100%;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li a {
+  padding: 10px 25px;
+  font-size: 11px;
+  color: #000000;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li a:hover {
+  color: #2F2C2C;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li.search {
+  float: right;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li.search input {
+  padding: 5px;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #000000;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li.search input.form-control {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li.search button {
+  background: transparent;
+  border: none;
+  top: 5px;
+  right: 0;
+  position: absolute;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li > ul {
+  background: #000000;
+}
+.al-menu-wrap .al-menu-area .al-menu-info .navbar ul li > ul li a {
+  color: #FFFFFF;
+}
+.shop-car {
+  position: relative;
+}
+.shop-car.dropdown a {
+  background: #000000 !important;
+}
+.shop-car a {
+  font-size: 14px;
+}
+.shop-car .shop-car-list {
+  position: absolute;
+  top: 28px;
+  z-index: 100;
+  width: 300px;
+  margin-left: -90px;
+  background-color: #ffffff;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 10px;
+}
+.allure-dropdown.dropdown > a {
+  background: #000000 !important;
+}
+.allure-dropdown .dropdown-menu {
+  background-color: #ffffff;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+.allure-dropdown .dropdown-menu li {
+  border-right: 0 !important;
+}
+.allure-dropdown .dropdown-menu li > a {
+  color: #000000 !important;
+}
+.language > a {
+  background: #000000 !important;
+}
+.language ul {
+  position: absolute;
+  top: 28px;
+  z-index: 100;
+  width: 100px;
+  margin-left: -90px;
+  background-color: #ffffff;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 10px;
+}
+.language ul li {
+  border-right: 0 !important;
+}
+.language ul li > a {
+  color: #000000 !important;
+}
+.al-footer-wrap {
+  width: 100%;
+}
+.al-footer-wrap .al-footer-area {
+  margin: 0 auto;
+  width: 980px;
+  border-top: 0px dashed #000000;
+}
+.al-footer-wrap .al-footer-area .al-footer-info {
+  padding: 20px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info:before,
+.al-footer-wrap .al-footer-area .al-footer-info:after {
+  content: " ";
+  display: table;
+}
+.al-footer-wrap .al-footer-area .al-footer-info:after {
+  clear: both;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .under-inline {
+  border-bottom: 1px dashed #000000;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box {
+  float: left;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box a {
+  color: #000000;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box a:hover {
+  text-decoration: underline;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box .title {
+  font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.one {
+  width: 200px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.one ul {
+  margin: 0;
+  padding-left: 0;
+  margin-top: 10px;
+  list-style-type: none;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.one ul li {
+  font-size: 10px;
+  font-weight: 300;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.two {
+  width: 250px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.two .btn {
+  position: relative;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.two input {
+  padding: 5px;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #000000;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.two input.form-control {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.two input:last-child {
+  color: #FFFFFF;
+  position: absolute;
+  top: 10px;
+  right: -15px;
+  background: #000000;
+  border: none;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three {
+  width: 200px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul {
+  margin-top: 20px;
+  list-style-type: none;
+  padding-left: 0;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li {
+  float: left;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li:first-child {
+  margin-left: 0;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li a {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/allure/imgs/site_list.png') no-repeat;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li a.o1 {
+  background-position: 0 -38px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li a.o2 {
+  background-position: 0 -18px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.three ul li a.o3 {
+  background-position: 0 -98px;
+}
+.al-footer-wrap .al-footer-area .al-footer-info .box.four {
+  width: 200px;
+  font-size: 10px;
+  font-weight: 300;
+}
+.error {
+  display: block;
+  color: #a94442;
+}
+.shop-car-list .al-table {
+  width: 100%;
+  display: table;
+}
+.shop-car-list .al-table .al-row {
+  display: table-row;
+}
+.shop-car-list .al-table .al-row > div {
+  padding: 5px;
+  display: table-cell;
+  width: 25%;
+  vertical-align: middle;
+  border-bottom: 1px dashed #CCCCCC;
+}
+.shop-car-list .al-table .al-row > div.img img {
+  width: 50px;
+  height: 50px;
+}
+.shop-car-list .al-table .al-row > div.number input {
+  width: 65px;
+}
+.shop-car-list .al-table .al-row > div.price {
+  font-weight: bold;
+}
+.shop-car-list .al-table .al-row > div.delete span {
+  cursor: pointer;
+}
+.shop-car-list .al-table .al-row > div.delete span:hover {
+  color: red;
+}
+.shop-car-list .al-table .al-row:first-child > div {
+  font-weight: bold;
+}
+.shop-car-list .al-table .al-row:last-child > div {
+  border-bottom: 0;
+}
+.shop-car-list .product-sum {
+  text-align: right;
+}
+.shop-car-list .product-sum span.title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.shop-car-list .product-sum span.total {
+  padding-left: 20px;
+  font-size: 20px;
+  color: #A33030;
+  font-weight: bold;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.al-line-between {
+  width: 980px;
+  height: 2px;
+  background: #F5F0F0;
+  margin: 20px auto 20px auto;
+}
+.al-slide-wrap {
+  margin-bottom: 10px;
+}
+.al-slide-wrap .al-slide-area .al-slide-info {
+  margin: 0 auto;
+  width: 980px;
+}
+.al-slide-wrap .al-slide-area .al-slide-info .box-list-title {
+  margin-bottom: 10px;
+}
+.al-slide-wrap .al-slide-area .al-slide-info .box-list-title h4 {
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #DDDDDD;
+}
+.al-slide-wrap .al-slide-area .al-slide-info .carousel-inner .item img {
+  width: 980px;
+  height: 400px;
+}
+.al-video-wrap {
+  margin-bottom: 20px;
+}
+.al-video-wrap .al-video-area .al-video-info {
+  background: #000000;
+  margin: 0 auto;
+  width: 980px;
+}
+.al-video-wrap .al-video-area .al-video-info .video {
+  margin: 0 auto;
+  width: 500px;
+}
+.al-box-wrap {
+  width: 100%;
+  background-color: #F8F8F8;
+}
+.al-box-wrap .al-box-area {
+  margin: 0 auto;
+  width: 980px;
+}
+.al-box-wrap .al-box-area .al-box-info {
+  padding: 20px;
+}
+.al-box-wrap .al-box-area .al-box-info .box {
+  width: 290px;
+  height: 100px;
+  float: left;
+  background-color: #FFFFFF;
+  margin-left: 20px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.175);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.175);
+}
+.al-box-wrap .al-box-area .al-box-info .box.one {
+  padding: 10px;
+}
+.al-box-wrap .al-box-area .al-box-info .box.one .title {
+  margin-bottom: 10px;
+}
+.al-box-wrap .al-box-area .al-box-info .box.one .type-text .email {
+  padding-left: 5px;
+  height: 30px;
+  border: 1px solid #000000;
+}
+.al-box-wrap .al-box-area .al-box-info .box.one .type-text .btn {
+  margin-top: -3px;
+  margin-left: 0px;
+  padding: 4px 10px;
+  background-color: #000000;
+  color: #FFFFFF;
+  height: 30px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+.al-box-wrap .al-box-area .al-box-info .box.two .media .media-body {
+  padding-top: 10px;
+}
+.al-box-wrap .al-box-area .al-box-info .box.two .media .media-heading {
+  font-size: 14px;
+  font-weight: bold;
+}
+.al-box-wrap .al-box-area .al-box-info .box.three .media .media-body {
+  padding-top: 10px;
+}
+.al-box-wrap .al-box-area .al-box-info .box.three .media .media-heading {
+  font-size: 14px;
+  font-weight: bold;
+}
+.al-slide-wrap {
+  width: 100%;
+}
+.al-display-wrap {
+  width: 100%;
+}
+.al-display-wrap .al-display-area {
+  margin: 0 auto;
+  width: 980px;
+}
+.al-display-wrap .al-display-area .al-display-info a {
+  display: block;
+}
+.al-display-wrap .al-display-area .al-display-info a > div.abs {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  color: #FFFFFF;
+  background-color: transparent;
+}
+.al-display-wrap .al-display-area .al-display-info a > div.abs:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: background-color ease-in 0.5s;
+  -o-transition: background-color ease-in 0.5s;
+  transition: background-color ease-in 0.5s;
+}
+.al-display-wrap .al-display-area .al-display-info a > div.abs .con {
+  /*padding-left: 20px;*/
+  height: 90px;
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*margin-top: -45px;*/
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    text-align: right;
+    padding-top:85%;
+    padding-right: 10px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .list .box img {
+  width: 300px;
+  height: 300px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .box-list-title {
+  margin-bottom: 10px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .box-list-title h4 {
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #DDDDDD;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .box-des {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #EEEEEE;
+  border-left: 5px solid #aa6708;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list:before,
+.al-display-wrap .al-display-area .al-display-info .box-list:after {
+  content: " ";
+  display: table;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list:after {
+  clear: both;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .rel {
+  position: relative;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list .abs {
+  position: absolute;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.one .left {
+  float: left;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.one .left .top {
+  margin-bottom: 32px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.one .right {
+  float: right;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.two .box {
+  float: left;
+  margin-left: 40px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.two .box:first-child {
+  margin-left: 0;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.two .box:nth-child(3n+1) {
+  margin-left: 0;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.three .box {
+  float: left;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.three .box:first-child {
+  margin-left: 0;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.three .box:last-child {
+  float: right;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.three div.title {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box {
+  float: left;
+  width: 212px;
+  margin-left: 32px;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box a:hover {
+  text-decoration: none;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box a:hover .text {
+  color: #626366;
+  -webkit-transition: color ease-in 0.5s;
+  -o-transition: color ease-in 0.5s;
+  transition: color ease-in 0.5s;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box a:hover .img {
+  opacity: 1;
+  -webkit-transition: opacity ease-in 0.5s;
+  -o-transition: opacity ease-in 0.5s;
+  transition: opacity ease-in 0.5s;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box:first-child {
+  margin-left: 0;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box .img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.al-display-wrap .al-display-area .al-display-info .box-list.four .box .text {
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  color: #37383A;
+}

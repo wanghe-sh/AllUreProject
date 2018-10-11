@@ -1,0 +1,435 @@
+﻿@model MainViewModel<ProductOutput[]>
+@{
+    var products = Model.BodyModel;
+    var recommendL = products.Where(p => p.RecommendedL).ToArray();
+    var recommendS = products.Where(p => p.RecommendedS).ToArray();
+}
+
+<link type="text/less" rel="stylesheet" href="/static/css/page/index.css">
+<!-- Furniture slide start
+        <div class="al-slide-wrap">
+            <div class="al-slide-area">
+                <div class="al-slide-info">
+                    <div id="carousel-generic-furniture" class="al-carousel carousel slide">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-generic-furniture" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-generic-furniture" data-slide-to="1"></li>
+                            <li data-target="#carousel-generic-furniture" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="/static/imgs/chair-big-5.jpg" data-holder-rendered="true">
+                                <div class="carousel-caption">
+                                    <h3>Furniture Display BIG PICUTRE 1</h3>
+                                    <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="/static/imgs/chair-big-6.jpg" data-holder-rendered="true">
+                                <div class="carousel-caption">
+                                    <h3>Furniture Display BIG PICUTRE 2</h3>
+                                    <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="/static/imgs/chair-big-7.jpg" data-holder-rendered="true">
+                                <div class="carousel-caption">
+                                    <h3>Furniture Display BIG PICUTRE 3</h3>
+                                    <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#carousel-generic-furniture" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-generic-furniture" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        slide end-->
+
+<!-- FURNITURE display start-->
+<div class="al-display-wrap">
+    <div class="al-display-area">
+        <div class="al-display-info">
+            <!-- one row start-->
+            <div class="box-list two">
+                <div class="box-list-title">
+                    <h4>FURNITURE DISPLAY BIG PICUTRE</h4>
+                </div>
+
+                <!-- ELECTRIC APPLIANCE slide start-->
+                <div class="al-slide-wrap">
+                    <div class="al-slide-area">
+                        <div class="al-slide-info">
+                            <div id="carousel-furniture-appliance" class="al-carousel carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-furniture-appliance" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-furniture-appliance" data-slide-to="1"></li>
+                                    <li data-target="#carousel-furniture-appliance" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    @for (int i = 0; i < recommendL.Length; i++)
+                                    {
+                                        <div class="item @(i == 0 ? "active" : string.Empty)">
+                                            <img src="@(this.AdminSite + recommendL[i].Images.First(m => m.IsLargeImage).ImageUrl)" data-holder-rendered="true">
+                                            <div class="carousel-caption">
+                                                <h3>@recommendL[i].Name</h3>
+                                                <p>@recommendL[i].Localized.Descrption</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <a class="left carousel-control" href="#carousel-furniture-appliance" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-furniture-appliance" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ELECTRIC APPLIANCE slide end-->
+                <div class="box-des">
+                    Descript text: this is the text which show furniture description.
+                </div>
+                <div class="list">
+                    @for (int i = 0; i < recommendS.Length; i++)
+                    {
+                        <div class="box">
+                            <a href="/product/@recommendS[i].Id" class="rel">
+                                <div class="abs">
+                                    <div class="con">
+                                        <h3>@recommendS[i].Name</h3>
+                                        <h5>@recommendS[i].Localized.Descrption</h5>
+                                    </div>
+                                </div>
+                                <img class="media-object" src="@(AdminSite + recommendS[i].Images.First(m => !m.IsLargeImage).ImageUrl)" />
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- one row end-->
+
+        </div>
+    </div>
+</div>
+<div class="al-line-between"></div>
+<!-- FURNITURE display end-->
+
+
+
+<!-- ELECTRIC display start-->
+<div class="al-display-wrap">
+    <div class="al-display-area">
+        <div class="al-display-info">
+            <!-- one row start-->
+            <div class="box-list two">
+                <div class="box-list-title">
+                    <h4>ELECTRIC APPLIANCE DISPLAY BIG PICUTRE</h4>
+                </div>
+
+                <!-- CABINET slide start-->
+                <div class="al-slide-wrap">
+                    <div class="al-slide-area">
+                        <div class="al-slide-info">
+                            <div id="carousel-electric-cabinet" class="al-carousel carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-electric-cabinet" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-electric-cabinet" data-slide-to="1"></li>
+                                    <li data-target="#carousel-electric-cabinet" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="/static/imgs/chair-big-5.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>CABINET DISPLAY BIG PICUTRE 1</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="/static/imgs/chair-big-6.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>CABINET DISPLAY BIG PICUTRE 2</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="/static/imgs/chair-big-7.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>CABINET DISPLAY BIG PICUTRE 3</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#carousel-electric-cabinet" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-electric-cabinet" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- CABINET slide end-->
+
+                <div class="box-des">
+                    Descript text: this is the text which show electric appliance description.
+                </div>
+                <div class="list">
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-3.jpg" />
+                        </a>
+                    </div>
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-4.jpg" />
+                        </a>
+                    </div>
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-5.jpg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- one row end-->
+
+        </div>
+    </div>
+</div>
+<div class="al-line-between"></div>
+<!-- ELECTRIC display end-->
+
+
+
+
+<!-- CABINET display start-->
+<div class="al-display-wrap">
+    <div class="al-display-area">
+        <div class="al-display-info">
+            <!-- one row start-->
+            <div class="box-list two">
+                <div class="box-list-title">
+                    <h4>CABINET DISPLAY BIG PICUTRE</h4>
+                </div>
+
+                <!-- chuju APPLIANCE slide start-->
+                <div class="al-slide-wrap">
+                    <div class="al-slide-area">
+                        <div class="al-slide-info">
+                            <div id="carousel-cabinet-appliance" class="al-carousel carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-cabinet-appliance" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-cabinet-appliance" data-slide-to="1"></li>
+                                    <li data-target="#carousel-cabinet-appliance" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="/static/imgs/chair-big-5.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>ELECTRIC APPLIANCE DISPLAY BIG PICUTRE 1</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="/static/imgs/chair-big-6.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>ELECTRIC APPLIANCE DISPLAY BIG PICUTRE 2</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="/static/imgs/chair-big-7.jpg" data-holder-rendered="true">
+                                        <div class="carousel-caption">
+                                            <h3>ELECTRIC APPLIANCE DISPLAY BIG PICUTRE 3</h3>
+                                            <p>Vibrant and colorful artisan Elissa Medina captures the spirit of Mexican folk art. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#carousel-cabinet-appliance" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-cabinet-appliance" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- chuju APPLIANCE slide end-->
+
+                <!--  musical instrument slide start-->
+                <div class="al-video-wrap">
+                    <div class="al-video-area">
+                        <div class="al-video-info">
+                            <div class="video">
+                                <video width="500" height="400" src="/static/video/echo-hereweare.mp4" type="video/mp4" controls="controls"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--slide end-->
+
+                <div class="box-des">
+                    Descript text: this is the text which show cabinet description.
+                </div>
+                <div class="list">
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-3.jpg" />
+                        </a>
+                    </div>
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-4.jpg" />
+                        </a>
+                    </div>
+                    <div class="box">
+                        <a href="/product" class="rel">
+                            <div class="abs">
+                                <div class="con">
+                                    <h3>SEDUCTIVE SEATING </h3>
+                                    <h5>Discover our unique collection </h5>
+                                </div>
+                            </div>
+                            <img class="media-object" src="/static/imgs/chair-middle-5.jpg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- one row end-->
+
+        </div>
+    </div>
+</div>
+<div class="al-line-between"></div>
+<!-- CABINET display end-->
+
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "alHome",
+                            "location": "js/app/index",
+                            "main": "main"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "alHome"], function (jQuery, alHome) {
+                            jQuery(document.body).ready(
+                                function () {
+                                    new alHome();
+                                });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

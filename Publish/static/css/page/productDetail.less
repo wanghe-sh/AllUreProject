@@ -1,0 +1,90 @@
+@import "common.less";
+.al-prodcut-detail-wrap{
+	width: 100%;
+	.al-prodcut-detail-area{
+		margin: 0 auto;
+        width: @al-content-width;
+		.al-prodcut-detail-info{
+			padding: 40px 0;
+			.product{
+				margin-left: 50px;
+				.clearfix();
+				.left{
+					float: left;
+					.big{
+						img{
+							width: 374px;
+							height: 252px;
+						}
+					}
+					.small{
+						margin-top: 35px;
+						.img{
+							.clearfix();
+							float: left;
+							margin-left: 5px;
+							padding: 5px;
+							border: 1px solid #CCCCCC;
+							img{
+								width: 80px;
+								height: 80px;
+								cursor: pointer;
+							}
+							&:first-child{
+								margin: 0;
+							}
+						}
+					}
+				}
+				.middle{
+					margin-left: 100px;
+					float: left;
+					.line{
+						input.number{
+							width: 45px;
+						}
+						padding: 2px 0;
+						div{
+							float: left;
+							&:first-child{
+								font-weight: bold;
+							}
+							&:last-child{
+								padding-left: 15px;
+							}
+							
+						}
+						&.price{
+							div:last-child{
+								font-size: 15px;
+								font-style: italic;
+							}
+						}
+					}
+					.add-car{
+						margin-top: 10px;
+						a.buy{
+							padding-left:20px;
+							padding-right:20px;
+							.border-radius(0);
+						}
+						button{
+							margin-left: 25px;
+							padding-left:25px;
+							padding-right: 25px;
+							.border-radius(0);
+						}
+					}
+				}
+			}
+			.product-introduction{
+				margin-top: 50px;
+				> h3{
+					border: none;
+					border-bottom: 2px solid #1b809e;
+					padding: 20px 0 20px 0;
+				}
+			}
+		}
+	}
+}

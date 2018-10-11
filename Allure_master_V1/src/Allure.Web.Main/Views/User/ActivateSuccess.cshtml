@@ -1,0 +1,71 @@
+
+<link type="text/less" rel="stylesheet" href="/static/css/page/activateSuccess.css">
+
+        <!-- activateSuccess start-->
+        	<div class="al-activate-success-wrap">
+        		<div class="al-activate-success-area">
+        			<div class="al-activate-success-info">
+                        <div class="al-activate-success-text">
+                            <h3>activate success</h3>
+                            <div>
+                                <div class="alert alert-success" role="alert">
+                                    <span>Dear user, activate success, jump to index after 5 second or click this link</span>
+                                    <a href="/user/login">Login</a>
+                                </div>
+                            </div>
+                        </div>
+        			</div>
+        		</div>
+        	</div>
+        <!-- activateSuccess end-->
+
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery"], function (jQuery) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    //new alHome();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

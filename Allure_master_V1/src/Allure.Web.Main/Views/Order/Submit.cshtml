@@ -1,0 +1,274 @@
+@model MainViewModel
+
+<link type="text/css" rel="stylesheet" href="/static/css/page/productOrder.css">
+
+<!-- product Order submit start-->
+  <div class="al-product-order-wrap">
+    <div class="al-product-order-area">
+      <div class="al-product-order-info" ng-controller="orderSubmitFormCtrl">
+                <div ng-controller="alertCtrl" ng-cloak class="alert-area">
+                  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                </div>
+                <h3>user order</h3>
+                <div class="product-order-form">
+                    <form class="form-inline submit-order-form" name="submitOrderForm">
+                        <div class="validate-goods">
+                            <h4 class="title">
+                                <span>Validate Goods:</span>
+                                <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                <div class="line">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label for="orderStatus">Order Check Status:</label>
+                                            <label>
+                                                <input type="radio" name="willCheck" ng-model="product.willCheck" value="0">
+                                                <input type="radio" name="willCheck" ng-model="product.willCheck" value="1">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="line">
+                                    <div class="form-group">
+                                        <label for="orderStatus">check goods address:</label>
+                                        <input type="text" name="checkAddress" id="checkAddress" ng-model="product.checkAddress" class="form-control size-5" value="">
+                                    </div>
+                                </div>
+
+                                <div class="line">
+                                    <div class="form-group">
+                                        <label for="orderStatus">Contact Call:</label>
+                                        <input type="text" class="form-control" ng-model="product.checkContact" name="checkContact" id="checkContact">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="delivery-info">
+                            <h4 class="title">
+                                <span>Delivery Info:</span>
+                                <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                @foreach (var delivery in this.CurrentUser.Deliveries)
+                                { 
+                                <div class="line">
+                                        <div class="form-group">
+                                            <label for="receiverName">Receiver Name:</label>
+                                            <input type="text" class="form-control" name="receiverName" ng-model="product.receiverName" id="receiverName" ng-init="product.receiverName='@delivery.Receiver'">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contactWay">Receiver Contact:</label>
+                                            <input type="text" class="form-control" name="receiverContact" ng-model="product.receiverContact"  ng-init="product.receiverContact='@delivery.Phone'" id="receiverContact" value="@delivery.Phone">
+                                        </div>
+                                </div>
+                                <div class="line">
+                                    <div class="form-group">
+                                        <label for="goodsAddress">Receiver PostCode:</label>
+                                        <input type="text" class="form-control size-5" name="receiverPostCode" ng-model="product.receiverPostCode" ng-init="product.receiverPostCode='@delivery.PostCode'" id="receiverPostCode" value="@delivery.PostCode">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="goodsAddress">Receiver Address:</label>
+                                        <input type="text" class="form-control" name="receiverAddress" ng-model="product.receiverAddress" id="receiverAddress" ng-init="product.receiverAddress='@delivery.Address'" value="@delivery.Address">
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="order-detail">
+                            <h4 class="title">
+                                <span>Delivery Info:</span>
+                                 <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                <div class="line">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Goods Id</th>
+                                  <th>Name</th>
+                                  <th>Brand</th>
+                                  <th>Price</th>
+                                  <th>Discount</th>
+                                  <th>Number</th>
+                                  <th>Account</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                  <tr class="al-row" ng:repeat="product in productType.shopCars">
+                                      <td>{{product.id}}</td>
+                                      <td>{{product.name}}</td>
+                                      <td>{{product.brand}}</td>
+                                      <td>{{product.price}}</td>
+                                      <td>{{product.discount}}</td>
+                                      <td>{{product.number}}</td>
+                                      <td>{{sum}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="order-account">
+                                <div>
+                                    <span>Account:</span>
+                                    <span>100</span>
+                                </div>
+                                <div>
+                                    <span>Discount:</span>
+                                    <span>100</span>
+                                </div>
+                                <div>
+                                    <span>Cash:</span>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="pay-info">
+                            <h4 class="title">
+                                <span>Pay Info:</span>
+                                 <span class="arrow glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                            <div class="line-wrap">
+                                <div class="line">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span>pay cash:</span>
+                                        <span>$0.00</span>
+                                        <span class="pay-received">payment received:</span>
+                                        <span><input type="checkbox"/></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Pay deadline:</span>
+                                        <span>7/27/14</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <span>pay cash:</span>
+                                        <span>$0.00</span>
+                                        <span class="pay-received">remaining sum:</span>
+                                        <span><input type="checkbox"/></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Pay deadline:</span>
+                                        <span>7/27/14</span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <div class="order-submit">
+                            <input type="submit" ng-click="submitOrder($event)" class="btn btn-primary" value="Submit"/>
+                        </div>
+                    </form>
+                </div>
+      </div>
+    </div>
+  </div>
+<!-- product Order submit end-->
+<script type="text/javascript">
+    var require = (function () {
+
+        return {
+            "callback": function () {
+
+                var deps = ["require", "jquery"];
+
+                require.config({
+                    "waitSeconds": 0,
+
+                    "baseUrl": "/static",
+
+                    "packages": [
+                        {
+                            "name": "jquery",
+                            "location": "js/lib/jquery",
+                            "main": "jquery-1.9.1"
+                        },
+                        {
+                            "name": "angular",
+                            "location": "js/lib/angularjs",
+                            "main": "angular"
+                        },
+                        {
+                            "name": "angularjs-bootstrap",
+                            "location": "js/lib/angularjs-bootstrap",
+                            "main": "ui-bootstrap-tpls"
+                        },
+                        {
+                            "name": "bootstrap",
+                            "location": "js/plugin/bootstrap",
+                            "main": "bootstrap"
+                        },
+                        {
+                            "name": "mediaelement",
+                            "location": "js/plugin/media",
+                            "main": "mediaelement"
+                        },
+                        {
+                            "name": "jquery-cookie",
+                            "location": "js/plugin/jquery-cookie",
+                            "main": "jquery-cookie"
+                        },
+                        {
+                            "name": "jquery-validate",
+                            "location": "js/plugin/validate",
+                            "main": "jquery-validate"
+                        },
+                        {
+                            "name": "shopCar",
+                            "location": "js/app/shopCar",
+                            "main": "main"
+                        },
+                        {
+                            "name": "addProduct",
+                            "location": "js/app/productDetail",
+                            "main": "addProductToShopCar"
+                        },
+                        {
+                            "name": "submitOrder",
+                            "location": "js/app/order/submit",
+                            "main": "main"
+                        }
+                    ],
+
+                    "shim": {
+                        "bootstrap": {
+                            deps: ["jquery"],
+                            init: function($) {
+                                return $;
+                            }
+                        },
+                        "jquery-validate": {
+                            deps: ["jquery"],
+                            init: function ($) {
+                                return $;
+                            }
+                        },
+                        "angularjs-bootstrap": {
+                            deps: ["angular"]
+                        }
+                    },
+
+                    "deps": deps,
+
+                    "callback": function (localRequire) {
+                        localRequire(["jquery", "submitOrder"], function (jQuery, SubmitOrder) {
+                            jQuery(document.body).ready(
+                                function(){
+                                    new SubmitOrder();
+                            });
+                        });
+                    }
+                });
+            }
+        };
+    })();
+</script>

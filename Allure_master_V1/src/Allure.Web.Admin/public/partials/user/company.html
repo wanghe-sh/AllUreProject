@@ -1,0 +1,126 @@
+<style type="text/css">
+    .form-search .col-xs-4,
+    .form-search .col-xs-8{
+        padding-left: 0;
+        padding-right: 10px;
+    }
+    .form-search .control-label{
+        font-weight: normal;
+    }
+    .table tbody tr.active a{
+        color:#428bca;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+    	<div class="page-content-header col-xs-12">
+        	<h4>企业用户列表</h4>
+        </div>
+        <!-- <form class="form-horizontal row form-search" role="form"> -->
+        <div class="form-horizontal row form-search">
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">姓氏</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control input-sm" ng-model="search.LastName" />
+                    </div>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">邮箱</label>
+                    <div class="col-xs-8">
+                      <input type="text" class="form-control input-sm" ng-model="search.Email" />
+                    </div>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">称谓</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" name="gender" ng-model="search.Gender">
+                            <option value="">请选择</option>
+                            <option ng-repeat="item in GENDER" value="{{item.value}}">{{item.text}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">手机</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control input-sm"  ng-model="search.Mobile"/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">固定电话</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control input-sm"  ng-model="search.Telephone"/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">公司</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control input-sm"  ng-model="search.Company"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">角色</label>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <input type="hidden" name="roles" ng-model="search.roles"/>
+                            <input type="text" class="form-control" ng-model="roleNames" userrole size role-options="ROLE" role-values="roles" unlimited="true" />
+                            <span class="input-group-addon" userrole size unlimited="true">+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4">
+                    <label class="col-xs-4 control-label input-sm">有无效</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" name="status" ng-options="obj.value as obj.text for obj in STATUS"  ng-model="search.Status">
+                        <option value="">请选择</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <button class="btn btn-default input-sm" ng-click="searchFn()">检索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </form> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>邮箱</th>
+                    <th>姓氏</th>
+                    <th>称谓</th>
+                    <th>手机</th>
+                    <th>固定电话</th>
+                    <th>公司</th>
+                    <th>角色</th>
+                    <th>有无效</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users" ng-class="$index % 2 === 0 ? 'active': ''">
+                    <td>{{$index + 1}}</td>
+                    <td>{{user.Email}}</td>
+                    <td>{{user.LastName}}</td>
+                    <td>{{getGender(user.Gender)}}</td>
+                    <td>{{user.Mobile}}</td>
+                    <td>{{user.Telephone}}</td>
+                    <td>{{user.Company}}</td>
+                    <td>{{roleMap(user.Roles)}}</td>
+                    <td>{{getStatus(user.Status)}}</td>
+                    <td><a ng-href="#/user/{{user.UserId}}">明细</a></td></td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination class="pull-right" total-items="totalCount" ng-model="currentPage" items-per-page="size" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></pagination>
+    </div>
+</div>
