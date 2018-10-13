@@ -1592,7 +1592,7 @@ define([
                 if (index) {
                     $scope.baseInfo.details.splice(index, 1);
                 } else {
-                    $scope.baseInfo.details.splice(0);
+                    $scope.baseInfo.details.splice(0,1);
                 }
             }
             $scope.submitlogisticExpense = function () {
@@ -2168,7 +2168,7 @@ define([
                 if (index) {
                     $scope.UpdateOrder.details.splice(index, 1);
                 } else {
-                    $scope.UpdateOrder.details.splice(0);
+                    $scope.UpdateOrder.details.splice(0,1);
                 }
             }
 

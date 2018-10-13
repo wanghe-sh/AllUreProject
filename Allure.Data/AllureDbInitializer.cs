@@ -8,7 +8,7 @@ using Allure.Core.Models;
 
 namespace Allure.Data
 {
-    class AllureDbInitializer : DropCreateDatabaseAlways<AllureContext>
+    class AllureDbInitializer : DropCreateDatabaseIfModelChanges<AllureContext>
     {
         protected override void Seed(AllureContext context)
         {

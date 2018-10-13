@@ -191,6 +191,9 @@ namespace Allure.Data.Repositories
                         }
                     }
                 }
+
+                order.LogisticId = add.LogisticId;
+                order.LogisticOrderNumber = add.LogisticNumber;
             }
 
             var now = DateTime.Now;

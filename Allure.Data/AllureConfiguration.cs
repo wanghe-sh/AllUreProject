@@ -13,8 +13,8 @@ namespace Allure.Data
         public AllureConfiguration()
         {
             this.SetProviderServices(SqlProviderServices.ProviderInvariantName, SqlProviderServices.Instance);
-            //this.SetDatabaseInitializer<AllureContext>(new AllureDbInitializer());
-            SetDatabaseInitializer<AllureContext>(null);
+            this.SetDatabaseInitializer<AllureContext>(new AllureDbInitializer());
+            //SetDatabaseInitializer<AllureContext>(null);
         }
     }
 }

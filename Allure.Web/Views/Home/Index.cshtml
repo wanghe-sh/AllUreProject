@@ -56,7 +56,7 @@
 <!--MAIN BEGIN-->
 <div class="design">
     <ul class="clearfix">
-        @if (recommendS.Length >=0 )
+        @if (recommendS.Length >0 )
         {
             <li class="design-item design-item-1">
                 <a href="/product/@recommendS[0].Id">
@@ -75,7 +75,7 @@
                 </a>
             </li>
         }
-        @if (recommendS.Length >= 1)
+        @if (recommendS.Length > 1)
         {
             <li class="design-item design-item-2">
                 <a href="/product/@recommendS[1].Id">
@@ -84,7 +84,7 @@
                 </a>
             </li>
         }
-        @if (recommendS.Length >= 2)
+        @if (recommendS.Length > 2)
         {
             <li class="design-item design-item-3">
                 <a href="/product/@recommendS[2].Id">
@@ -103,7 +103,7 @@
                 </a>
             </li>
         }
-        @if (recommendS.Length >= 3)
+        @if (recommendS.Length > 3)
         {
             <li class="design-item design-item-4">
                 <a href="/product/@recommendS[3].Id">
@@ -122,7 +122,7 @@
                 </a>
             </li>
         }
-        @if (recommendS.Length >=4)
+        @if (recommendS.Length >4)
         {
             <li class="design-item design-item-5">
                 <a href="/product/@recommendS[4].Id">

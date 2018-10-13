@@ -126,6 +126,30 @@ namespace Allure.Data.Repositories
             {
                 throw new NotFoundException<Order>($"{nameof(Order.Id)}={id.ToString()}");
             }
+            bool isFirstUpdateStorage = false;
+            bool isUpdateStorage = false;
+            bool isCancelStorage = false;
+            bool isShippedStorage = false;
+
+            if ((int) order.Status < 2 && (int) update.Status >= 2 )
+            {
+                isFirstUpdateStorage = true;
+            }
+
+            if ((int)order.Status >= 2 && (int)order.Status <= 3 && (int)update.Status == 4)
+            {
+                isCancelStorage = true;
+            }
+
+            if (order.Status != OrderStatus.Shipped && update.Status == OrderStatus.Shipped)
+            {
+                isShippedStorage = true;
+            }
+
+            if ((int) order.Status >= 2)
+            {
+                isUpdateStorage = true;
+            }
 
             Mapper.Map(update, order);
                         
@@ -165,7 +189,14 @@ namespace Allure.Data.Repositories
 
                 if (existingDetails.TryGetValue(detail.Id, out updateDetail) && updateDetail.Count > 0)
                 {
-                    deltaFrozen = updateDetail.Count.Value - detail.Count;
+                    if (!isFirstUpdateStorage)
+                    {
+                        deltaFrozen = updateDetail.Count.Value - detail.Count;
+                    }
+                    else
+                    {
+                        deltaFrozen = updateDetail.Count.Value;
+                    }
                     _dbContext.Entry(detail).CurrentValues.SetValues(updateDetail);
                     
                 }
@@ -174,19 +205,36 @@ namespace Allure.Data.Repositories
                     deltaFrozen = -detail.Count;
                     _dbContext.Entry(detail).State = EntityState.Deleted;
                 }
-                
-                storages[detail.ProductId].Frozen += deltaFrozen;
-                storages[detail.ProductId].Current -= deltaFrozen;
+
+                if ((int) update.Status.Value >= 2 && update.Status != OrderStatus.Canceled)
+                {
+                    storages[detail.ProductId].Frozen += deltaFrozen;
+                    storages[detail.ProductId].Current -= deltaFrozen;
+                }
+
+                if (isCancelStorage)
+                {
+                    storages[detail.ProductId].Frozen -= detail.Count;
+                    storages[detail.ProductId].Current += detail.Count;
+                }
+
+                if (isShippedStorage)
+                {
+                    storages[detail.ProductId].Frozen -= detail.Count;
+                }
             }
 
             foreach (var added in update.Details.Where(d => !d.Id.HasValue))
             {
                 var newDetail = Mapper.Map<OrderDetail>(added);
                 order.Details.Add(newDetail);
-                storages[newDetail.ProductId].Frozen += newDetail.Count;
-                storages[newDetail.ProductId].Current -= newDetail.Count;
+                if ((int) update.Status.Value >= 2 && update.Status != OrderStatus.Canceled)
+                {
+                    storages[newDetail.ProductId].Frozen += newDetail.Count;
+                    storages[newDetail.ProductId].Current -= newDetail.Count;
+                }
             }
-
+            
             order.UpdateTime = DateTime.Now;
         }
     }

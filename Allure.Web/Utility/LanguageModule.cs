@@ -50,7 +50,7 @@ namespace Allure.Web.Utility
                 return;
             }
 
-            string browserSpecified = application.Request.UserLanguages.FirstOrDefault(l => supported.Contains(l));
+            string browserSpecified = application.Request.UserLanguages?.FirstOrDefault(l => supported.Contains(l));
             SetCulture(application.Response, browserSpecified ?? dbContext.Set<Language>().Single(lang => lang.IsDefault).Code);
         }
 
