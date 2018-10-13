@@ -63,10 +63,11 @@
         <div class="col-xs-5">
         	<div id="product-images" class="text-center">
                 <div style="width:350px;">
-        			<div id="main-image-container" ng-if="product.Images.length > 0">
-                        <img id="multizoom" alt="zoomable" title="" ng-src="{{product.Images[0].ThumbnailUrl}}" />
+
+                    <div id="main-image-container" style="width:300px;float: left;" ng-if="product.Images.length > 0">
+                        <img id="multizoom" style="width:300px;" alt="zoomable" title="" ng-src="{{product.Images[0].ThumbnailUrl}}" />
         			</div>
-                    <div class="image-list multizoom thumbs" ng-if="product.Images.length > 0">
+                    <div class="image-list multizoom thumbs" style="float: left;width: 50px" ng-if="product.Images.length > 0">
                         <a ng-repeat="image in product.Images" ng-href="{{image.ThumbnailUrl}}" data-large="{{image.ImageUrl}}">
                             <img ng-src="{{image.ThumbnailUrl}}" style="max-width:50px"/>
                         </a>
