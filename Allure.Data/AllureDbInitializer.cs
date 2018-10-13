@@ -272,6 +272,17 @@ namespace Allure.Data
                 }).ToArray()
             }).ToList();
 
+            users.Insert(0, new User
+            {
+                FirstName = "admin",
+                LastName = "admin",
+                Email = "admin@allure.com",
+                Password = "admin",
+                Status = UserStatus.Normal,
+                Company = "allure",
+                Roles = new[] { new UserRole {  Role = Role.SystemAdmin } }
+            });
+
             context.Set<User>().AddRange(users);
 
             #endregion
